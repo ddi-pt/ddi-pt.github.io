@@ -22,7 +22,7 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="index.html">&nbsp;<i class="fa fa-user-md" aria-hidden="true"></i></a>
+            <a class="navbar-brand" href="https://ddi-pt.github.io/">&nbsp;<i class="fa fa-user-md" aria-hidden="true"></i></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -30,16 +30,16 @@
             <div class="collapse navbar-collapse" id="navbarsExample07">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="https://ddi-pt.github.io/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="predict.html">Predict</a>
+                        <a class="nav-link" href="https://ddi-pt.github.io/predict">Predict</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Browse</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown07">
-                            <a class="dropdown-item" href="browse-drug.html">Drug</a>
-                            <a class="dropdown-item" href="browse-lincs.html">LINCS</a>
+                            <a class="dropdown-item" href="https://ddi-pt.github.io/browse-drug">Drug</a>
+                            <a class="dropdown-item" href="https://ddi-pt.github.io/browse-lincs">LINCS</a>
                         </div>
                     </li>
                 </ul>
@@ -95,204 +95,7 @@
     <script src="js/bootstrap-table/extensions/export/bootstrap-table-export.min.js"></script>
 
     <script>
-        $('#table-test').bootstrapTable({
-            url: '{{ url('table/data') }}',
-            contentType: 'application/x-www-form-urlencoded',
-            toolbar: '#exportToolbar',
-            showRefresh: true,
-            showColumns: true,
-            showToggle:true,
-            clickToSelect: true,
-            search: true,
-            // showSearchButton: true,
-            showExport: true,
-            exportDataType: 'selected',
-            method: 'post',
-            cache: true,
-            striped: true,
-            pagination: true,
-            pageList: [10, 20, 50],
-            pageSize: 10,
-            pageNumber: 1,
-            idField:'id',
-            sidePagination: 'server',
-            queryParams: function (params) {
-                return {
-                    pageSize: params.limit,
-                    offset: params.offset,
-                    sort: params.sort,
-                    sortOrder: params.order,
-                    _token: $('meta[name="csrf-token"]').attr('content'),
-                    search: $('.search-input').val()
-                }
-            },
-            sortName: 'id',
-            sortOrder: 'asc',
-            columns: [
-                {
-                    field: 'state',
-                    checkbox: true,
-                    align: 'center',
-                }, {
-                    field: 'id',
-                    title: 'id',
-                    sortable:true,
-                }, {
-                    field: 'name',
-                    title: 'name',
-                    sortable:true,
-                },{
-                    field: 'item1',
-                    title: 'item1',
-                    sortable:true,
-                }, {
-                    field: 'item2',
-                    title: 'item2',
-                    sortable:true,
-                }
-            ]
-        });
-        $("#sel_exportoption").change(function () {
-            $('#table-test').bootstrapTable('refreshOptions', {
-                exportDataType: $(this).val()
-            });
-        });
 
-        $('#table-drug-a').bootstrapTable({
-            url: '{{ url('table/data') }}',
-            contentType: 'application/x-www-form-urlencoded',
-            toolbar: '#Toolbar',
-            clickToSelect: true,
-            singleSelect: true,
-            search: true,
-            searchAlign: 'left',
-            showSearchButton: true,
-            method: 'post',
-            cache: true,
-            striped: true,
-            pagination: true,
-            pageList: [5, 10, 20],
-            pageSize: 10,
-            pageNumber: 1,
-            idField:'id',
-            sidePagination: 'server',
-            queryParams: function (params) {
-                return {
-                    pageSize: params.limit,
-                    offset: params.offset,
-                    sort: params.sort,
-                    sortOrder: params.order,
-                    _token: $('meta[name="csrf-token"]').attr('content'),
-                    search: $('.search-input').val()
-                }
-            },
-            sortName: 'id',
-            sortOrder: 'asc',
-            columns: [
-                {
-                    field: 'state',
-                    checkbox: true,
-                    align: 'center',
-                }, {
-                    field: 'id',
-                    title: 'id',
-                    sortable:true,
-                }, {
-                    field: 'name',
-                    title: 'name',
-                    sortable:true,
-                },{
-                    field: 'item1',
-                    title: 'item1',
-                    sortable:true,
-                }, {
-                    field: 'item2',
-                    title: 'item2',
-                    sortable:true,
-                }
-            ]
-        });
-
-        $('#table-drug-b').bootstrapTable({
-            url: '{{ url('table/data') }}',
-            contentType: 'application/x-www-form-urlencoded',
-            toolbar: '#Toolbar',
-            clickToSelect: true,
-            singleSelect: true,
-            search: true,
-            searchAlign: 'left',
-            showSearchButton: true,
-            method: 'post',
-            cache: true,
-            striped: true,
-            pagination: true,
-            pageList: [5, 10, 20],
-            pageSize: 10,
-            pageNumber: 1,
-            idField:'id',
-            sidePagination: 'server',
-            queryParams: function (params) {
-                return {
-                    pageSize: params.limit,
-                    offset: params.offset,
-                    sort: params.sort,
-                    sortOrder: params.order,
-                    _token: $('meta[name="csrf-token"]').attr('content'),
-                    search: $('.search-input').val()
-                }
-            },
-            sortName: 'id',
-            sortOrder: 'asc',
-            columns: [
-                {
-                    field: 'state',
-                    checkbox: true,
-                    align: 'center',
-                }, {
-                    field: 'id',
-                    title: 'id',
-                    sortable:true,
-                }, {
-                    field: 'name',
-                    title: 'name',
-                    sortable:true,
-                },{
-                    field: 'item1',
-                    title: 'item1',
-                    sortable:true,
-                }, {
-                    field: 'item2',
-                    title: 'item2',
-                    sortable:true,
-                }
-            ]
-        });
-
-        $(function(){
-            $("#ok-a").click(function(){
-                var sl = $("#table-drug-a").bootstrapTable('getSelections');
-                $("#drug-a").val(sl[0].name)
-            });
-        });
-
-        $(function(){
-            $("#ok-b").click(function(){
-                var sl = $("#table-drug-b").bootstrapTable('getSelections');
-                $("#drug-b").val(sl[0].name);
-            });
-        });
-
-        $(function () {
-            $("#drug-pair").submit(function(event){
-                const f=$(this);
-                if(f[0].checkValidity()===false){
-                    event.preventDefault();
-                    event.stopPropagation();
-                };
-                f.addClass("was-validated");
-            })
-
-        })
     </script>
 </body>
 </html>

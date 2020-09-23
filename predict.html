@@ -360,6 +360,8 @@
         $(function(){
             $("#ok-a").click(function(){
                 var sl = $("#table-drug-a").bootstrapTable('getSelections');
+				console.log(13);
+				console.log(sl);
                 $("#drug-a").val(sl[0].name)
             });
         });
@@ -367,6 +369,8 @@
         $(function(){
             $("#ok-b").click(function(){
                 var sl = $("#table-drug-b").bootstrapTable('getSelections');
+				console.log(13);
+				console.log(sl);
                 $("#drug-b").val(sl[0].name);
             });
         });

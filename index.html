@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
+    <title>DDI</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">
+  </head>
+
+<body class="d-flex flex-column h-100">
+<header style="background:#436EEE;">
+    <div class="container">
+        <div class="row">
+            <div class="p-4 col-7">
+                <h1 class="text-white">DDI Prediction Tool</h1>
+                <span class="text-dark">Predict drug-drug interaction with LINCS</span>
+            </div>
+        </div>
+    </div>
+</header>
+    <main role="main">
+        <br>
+        <br>
+        <div class="container">
+            <form action="" novalidate id="drug-pair">
+                <div class="form-row align-items-center">
+                    <div class="col-12 col-md-6 p-2">
+                        <label class="sr-only" for="disabledSelect">Drug A</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Drug A</div>
+                            </div>
+                            <input type="text" class="form-control" id="drug-a" placeholder="Drug name" required="required" pattern="[A-Za-z0-9]{1,20}">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modal-a">Select</button>
+                            </div>
+                            <div class="invalid-feedback">
+                                Please enter a correct drug or select a drug
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 p-2">
+                        <label class="sr-only" for="disabledSelect">Drug B</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Drug B</div>
+                            </div>
+                            <input type="text" class="form-control" id="drug-b" placeholder="Drug name" required="required" pattern="[A-Za-z0-9]{1,20}">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modal-b">Select</button>
+                            </div>
+                            <div class="invalid-feedback">
+                                Please enter a correct drug or select a drug
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+
+            <br>
+            <br>
+
+            <!-- Modal -->
+            <div class="modal fade" id="Modal-a" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalLabel">Selelct a drug</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <table id="table-drug-a"></table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="ok-a">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="Modal-b" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalLabel">Selelct a drug</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <table id="table-drug-b"></table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="ok-b">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="exportToolbar">
+                                <select id="sel_exportoption" class="custom-select">
+                                    <option selected="selected" value="selected">Export selected data</option>
+                                    <option value="basic">Export data in this page</option>
+                                    <option value="all">Export all data</option>
+                                </select>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="table-test"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table
+                id="table"
+                data-toggle="table"
+                data-url="https://examples.bootstrap-table.com/json/data1.json">
+                <thead>
+                <tr>
+                    <th data-field="id">ID</th>
+                    <th data-field="name">Item Name</th>
+                    <th data-field="price">Item Price</th>
+                </tr>
+                </thead>
+            </table>
+
+        </div>
+        <br>
+        <br>
+    </main>
+
+<footer class="footer mt-auto py-5" style="background:#436EEE;">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-md">
+                <h4 class="text-white">DDIPT</font></h4>
+                <small class="d-block mb-3 text-dark">&copy; 2020-2020<br><i class="fa fa-bug" aria-hidden="true"></i>&nbsp;Version 1.0</small>
+            </div>
+            <div class="col-6 col-md">
+                <h5 class="text-white-50">Features</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-dark" href="#">LINCS</a></li>
+                    <li><a class="text-dark" href="#">Prediction</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5 class="text-white-50">Contect</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-dark" href="#">E-mail</a></li>
+                    <li><a class="text-dark" href="#">Address</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5 class="text-white-50">Help</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-dark" href="{{ url('/help/Tutorial.html') }}">Tutorial</a></li>
+                    <li><a class="text-dark" href="{{ url('/help/About.html') }}">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+    <script src="https://unpkg.com/tableexport.jquery.plugin/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://unpkg.com/tableexport.jquery.plugin/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/extensions/export/bootstrap-table-export.min.js"></script>
+    <script>
+        $('#table-test').bootstrapTable({
+            url: '{{ url('table/data') }}',
+            contentType: 'application/x-www-form-urlencoded',
+            toolbar: '#exportToolbar',
+            showRefresh: true,
+            showColumns: true,
+            showToggle:true,
+            clickToSelect: true,
+            search: true,
+            // showSearchButton: true,
+            showExport: true,
+            exportDataType: 'selected',
+            method: 'post',
+            cache: true,
+            striped: true,
+            pagination: true,
+            pageList: [10, 20, 50],
+            pageSize: 10,
+            pageNumber: 1,
+            idField:'id',
+            sidePagination: 'server',
+            queryParams: function (params) {
+                return {
+                    pageSize: params.limit,
+                    offset: params.offset,
+                    sort: params.sort,
+                    sortOrder: params.order,
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    search: $('.search-input').val()
+                }
+            },
+            sortName: 'id',
+            sortOrder: 'asc',
+            columns: [
+                {
+                    field: 'state',
+                    checkbox: true,
+                    align: 'center',
+                }, {
+                    field: 'id',
+                    title: 'id',
+                    sortable:true,
+                }, {
+                    field: 'name',
+                    title: 'name',
+                    sortable:true,
+                },{
+                    field: 'item1',
+                    title: 'item1',
+                    sortable:true,
+                }, {
+                    field: 'item2',
+                    title: 'item2',
+                    sortable:true,
+                }
+            ]
+        });
+        $("#sel_exportoption").change(function () {
+            $('#table-test').bootstrapTable('refreshOptions', {
+                exportDataType: $(this).val()
+            });
+        });
+
+        $('#table-drug-a').bootstrapTable({
+            url: '{{ url('table/data') }}',
+            contentType: 'application/x-www-form-urlencoded',
+            toolbar: '#Toolbar',
+            clickToSelect: true,
+            singleSelect: true,
+            search: true,
+            searchAlign: 'left',
+            showSearchButton: true,
+            method: 'post',
+            cache: true,
+            striped: true,
+            pagination: true,
+            pageList: [5, 10, 20],
+            pageSize: 10,
+            pageNumber: 1,
+            idField:'id',
+            sidePagination: 'server',
+            queryParams: function (params) {
+                return {
+                    pageSize: params.limit,
+                    offset: params.offset,
+                    sort: params.sort,
+                    sortOrder: params.order,
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    search: $('.search-input').val()
+                }
+            },
+            sortName: 'id',
+            sortOrder: 'asc',
+            columns: [
+                {
+                    field: 'state',
+                    checkbox: true,
+                    align: 'center',
+                }, {
+                    field: 'id',
+                    title: 'id',
+                    sortable:true,
+                }, {
+                    field: 'name',
+                    title: 'name',
+                    sortable:true,
+                },{
+                    field: 'item1',
+                    title: 'item1',
+                    sortable:true,
+                }, {
+                    field: 'item2',
+                    title: 'item2',
+                    sortable:true,
+                }
+            ]
+        });
+
+        $('#table-drug-b').bootstrapTable({
+            url: '{{ url('table/data') }}',
+            contentType: 'application/x-www-form-urlencoded',
+            toolbar: '#Toolbar',
+            clickToSelect: true,
+            singleSelect: true,
+            search: true,
+            searchAlign: 'left',
+            showSearchButton: true,
+            method: 'post',
+            cache: true,
+            striped: true,
+            pagination: true,
+            pageList: [5, 10, 20],
+            pageSize: 10,
+            pageNumber: 1,
+            idField:'id',
+            sidePagination: 'server',
+            queryParams: function (params) {
+                return {
+                    pageSize: params.limit,
+                    offset: params.offset,
+                    sort: params.sort,
+                    sortOrder: params.order,
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    search: $('.search-input').val()
+                }
+            },
+            sortName: 'id',
+            sortOrder: 'asc',
+            columns: [
+                {
+                    field: 'state',
+                    checkbox: true,
+                    align: 'center',
+                }, {
+                    field: 'id',
+                    title: 'id',
+                    sortable:true,
+                }, {
+                    field: 'name',
+                    title: 'name',
+                    sortable:true,
+                },{
+                    field: 'item1',
+                    title: 'item1',
+                    sortable:true,
+                }, {
+                    field: 'item2',
+                    title: 'item2',
+                    sortable:true,
+                }
+            ]
+        });
+
+        $(function(){
+            $("#ok-a").click(function(){
+                var sl = $("#table-drug-a").bootstrapTable('getSelections');
+                $("#drug-a").val(sl[0].name)
+            });
+        });
+
+        $(function(){
+            $("#ok-b").click(function(){
+                var sl = $("#table-drug-b").bootstrapTable('getSelections');
+                $("#drug-b").val(sl[0].name);
+            });
+        });
+
+        $(function () {
+            $("#drug-pair").submit(function(event){
+                const f=$(this);
+                if(f[0].checkValidity()===false){
+                    event.preventDefault();
+                    event.stopPropagation();
+                };
+                f.addClass("was-validated");
+            })
+
+        })
+    </script>
+</body>
+</html>

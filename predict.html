@@ -106,6 +106,9 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <div id="toolbar">
+                                <button id="re-bt-b" class="btn btn-secondary">Reset</button>
+                            </div>
                             <div class="table-responsive">
                                 <table id="table-drug-a"></table>
                             </div>
@@ -129,6 +132,9 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <div id="toolbar">
+                                <button id="re-bt-b" class="btn btn-secondary">Reset</button>
+                            </div>
                             <div class="table-responsive">
                                 <table id="table-drug-b"></table>
                             </div>
@@ -273,6 +279,7 @@
             url: 'https://pharmpkdb.com:14488/model/get_drugs',
             contentType: 'application/x-www-form-urlencoded',
             toolbar: '#Toolbar',
+			toolbarAlign: 'right',
             clickToSelect: true,
             singleSelect: true,
             search: true,
@@ -318,10 +325,13 @@
             url: 'https://pharmpkdb.com:14488/model/get_drugs',
             contentType: 'application/x-www-form-urlencoded',
             toolbar: '#Toolbar',
+			toolbarAlign: 'right',
             clickToSelect: true,
             singleSelect: true,
             search: true,
+			showSearchButton: true,
             searchAlign: 'left',
+			showRefresh: true,
             cache: true,
             striped: true,
             pagination: true,
@@ -382,6 +392,18 @@
             })
 
         })
+		
+		$(function(){
+            $("#re-bt-a").click(function(){
+                $("#table-drug-a").bootstrapTable('resetSearch');
+            });
+        });
+		
+		$(function(){
+            $("#re-bt-b").click(function(){
+                $("#table-drug-b").bootstrapTable('resetSearch');
+            });
+        });
     </script>
 </body>
 </html>

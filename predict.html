@@ -92,10 +92,7 @@
 					<button class="btn btn-primary" type="submit">Submit</button>
 				</div>
             </form>
-
             <br>
-            <br>
-
             <!-- Modal -->
             <div class="modal fade" id="Modal-a" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-scrollable">
@@ -148,9 +145,6 @@
                 </div>
             </div>
 
-
-            <br>
-            <br>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -163,7 +157,7 @@
                                 </select>
                             </div>
                             <div class="table-responsive">
-                                <table id="table-test"></table>
+                                <table id="table-results"></table>
                             </div>
                         </div>
                     </div>
@@ -213,7 +207,7 @@
     <script src="https://ddi-pt.github.io/js/bootstrap-table/extensions/export/bootstrap-table-export.min.js"></script>
 
     <script>
-        $('#table-test').bootstrapTable({
+        $('#table-results').bootstrapTable({
             url: 'table/data',
             contentType: 'application/x-www-form-urlencoded',
             toolbar: '#exportToolbar',

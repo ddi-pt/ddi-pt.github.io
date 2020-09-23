@@ -276,6 +276,7 @@
             clickToSelect: true,
             singleSelect: true,
             search: true,
+			showSearchButton: true,
             searchAlign: 'left',
             cache: true,
             striped: true,
@@ -358,18 +359,14 @@
         $(function(){
             $("#ok-a").click(function(){
                 var sl = $("#table-drug-a").bootstrapTable('getSelections');
-				console.log(13);
-				console.log(sl);
-                $("#drug-a").val(sl[0].name)
+                $("#drug-a").val(sl[0].Name)
             });
         });
 
         $(function(){
             $("#ok-b").click(function(){
                 var sl = $("#table-drug-b").bootstrapTable('getSelections');
-				console.log(13);
-				console.log(sl);
-                $("#drug-b").val(sl[0].name);
+                $("#drug-b").val(sl[0].Name);
             });
         });
 

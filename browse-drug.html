@@ -52,137 +52,14 @@
 </header>
 
     <main role="main" class="container flex-shrink-0">
-        <br>
-        <br>
-            <form action="" novalidate id="drug-pair">
-                <div class="form-row align-items-center">
-                    <div class="col-12 col-md-6 p-2">
-                        <label class="sr-only" for="disabledSelect">Drug A</label>
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">Drug A</div>
-                            </div>
-                            <input type="text" class="form-control" id="drug-a" placeholder="Drug name" required="required" pattern="[A-Za-z0-9]{1,20}">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modal-a">Select</button>
-                            </div>
-                            <div class="invalid-feedback">
-                                Please enter a correct drug or select a drug
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-12 col-md-6 p-2">
-                        <label class="sr-only" for="disabledSelect">Drug B</label>
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">Drug B</div>
-                            </div>
-                            <input type="text" class="form-control" id="drug-b" placeholder="Drug name" required="required" pattern="[A-Za-z0-9]{1,20}">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modal-b">Select</button>
-                            </div>
-                            <div class="invalid-feedback">
-                                Please enter a correct drug or select a drug
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn btn-primary" type="submit">Submit</button>
-            </form>
-
-            <br>
-            <br>
-
-            <!-- Modal -->
-            <div class="modal fade" id="Modal-a" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalLabel">Selelct a drug</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="table-responsive">
-                                <table id="table-drug-a"></table>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="ok-a">OK</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="Modal-b" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalLabel">Selelct a drug</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="table-responsive">
-                                <table id="table-drug-b"></table>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="ok-b">OK</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <br>
-            <br>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div id="exportToolbar">
-                                <select id="sel_exportoption" class="custom-select">
-                                    <option selected="selected" value="selected">Export selected data</option>
-                                    <option value="basic">Export data in this page</option>
-                                    <option value="all">Export all data</option>
-                                </select>
-                            </div>
-                            <div class="table-responsive">
-                                <table id="table-test"></table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <table
-                id="table"
-                data-toggle="table"
-                data-url="https://examples.bootstrap-table.com/json/data1.json">
-                <thead>
-                <tr>
-                    <th data-field="id">ID</th>
-                    <th data-field="name">Item Name</th>
-                    <th data-field="price">Item Price</th>
-                </tr>
-                </thead>
-            </table>
-        <br>
-        <br>
     </main>
 
 <footer class="footer mt-auto py-5 bg-dark">
     <div class="container">
         <div class="row">
             <div class="col-6 col-md">
-                <h4 class="text-white">DDIPT</h4>
+                <h4 class="text-white"><font color="#2828FF">DDI</font>PT</h4>
                 <small class="d-block mb-3 text-muted">&copy; 2020-2020<br><i class="fa fa-bug" aria-hidden="true"></i>&nbsp;Version 1.1</small>
             </div>
             <div class="col-6 col-md">

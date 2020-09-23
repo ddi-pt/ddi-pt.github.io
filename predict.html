@@ -106,7 +106,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div id="toolbar">
+                            <div id="toolbar-a">
                                 <button id="re-bt-b" class="btn btn-secondary">Reset</button>
                             </div>
                             <div class="table-responsive">
@@ -132,7 +132,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div id="toolbar">
+                            <div id="toolbar-b">
                                 <button id="re-bt-b" class="btn btn-secondary">Reset</button>
                             </div>
                             <div class="table-responsive">
@@ -278,7 +278,7 @@
         $('#table-drug-a').bootstrapTable({
             url: 'https://pharmpkdb.com:14488/model/get_drugs',
             contentType: 'application/x-www-form-urlencoded',
-            toolbar: '#Toolbar',
+            toolbar: '#toolbar-a',
 			toolbarAlign: 'right',
             clickToSelect: true,
             singleSelect: true,
@@ -323,7 +323,7 @@
         $('#table-drug-b').bootstrapTable({
             url: 'https://pharmpkdb.com:14488/model/get_drugs',
             contentType: 'application/x-www-form-urlencoded',
-            toolbar: '#Toolbar',
+            toolbar: '#toolbar-b',
 			toolbarAlign: 'right',
             clickToSelect: true,
             singleSelect: true,

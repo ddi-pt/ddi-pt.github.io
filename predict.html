@@ -270,7 +270,7 @@
         });
 
         $('#table-drug-a').bootstrapTable({
-            url: 'table/data',
+            url: '202.112.180.22:14488/model/get_drugs',
             contentType: 'application/x-www-form-urlencoded',
             toolbar: '#Toolbar',
             clickToSelect: true,
@@ -278,14 +278,14 @@
             search: true,
             searchAlign: 'left',
             showSearchButton: true,
-            method: 'post',
+            method: 'get',
             cache: true,
             striped: true,
             pagination: true,
             pageList: [5, 10, 20],
             pageSize: 10,
             pageNumber: 1,
-            idField:'id',
+            idField:'DrugBank-Id',
             sidePagination: 'server',
             queryParams: function (params) {
                 return {
@@ -297,7 +297,7 @@
                     search: $('.search-input').val()
                 }
             },
-            sortName: 'id',
+            sortName: 'DrugBank-Id',
             sortOrder: 'asc',
             columns: [
                 {
@@ -305,27 +305,27 @@
                     checkbox: true,
                     align: 'center',
                 }, {
-                    field: 'id',
-                    title: 'id',
+                    field: 'DrugBank-Id',
+                    title: 'DrugBank-Id',
                     sortable:true,
                 }, {
-                    field: 'name',
-                    title: 'name',
+                    field: 'Name',
+                    title: 'Name',
                     sortable:true,
                 },{
-                    field: 'item1',
-                    title: 'item1',
+                    field: 'Formula',
+                    title: 'Formula',
                     sortable:true,
                 }, {
-                    field: 'item2',
-                    title: 'item2',
+                    field: 'PubChem-Id',
+                    title: 'PubChem-Id',
                     sortable:true,
                 }
             ]
         });
 
         $('#table-drug-b').bootstrapTable({
-            url: 'table/data',
+            url: '202.112.180.22:14488/model/get_drugs',
             contentType: 'application/x-www-form-urlencoded',
             toolbar: '#Toolbar',
             clickToSelect: true,
@@ -333,14 +333,14 @@
             search: true,
             searchAlign: 'left',
             showSearchButton: true,
-            method: 'post',
+            method: 'get',
             cache: true,
             striped: true,
             pagination: true,
             pageList: [5, 10, 20],
             pageSize: 10,
             pageNumber: 1,
-            idField:'id',
+            idField:'DrugBank-Id',
             sidePagination: 'server',
             queryParams: function (params) {
                 return {
@@ -352,7 +352,7 @@
                     search: $('.search-input').val()
                 }
             },
-            sortName: 'id',
+            sortName: 'DrugBank-Id',
             sortOrder: 'asc',
             columns: [
                 {
@@ -360,20 +360,20 @@
                     checkbox: true,
                     align: 'center',
                 }, {
-                    field: 'id',
-                    title: 'id',
+                    field: 'DrugBank-Id',
+                    title: 'DrugBank-Id',
                     sortable:true,
                 }, {
-                    field: 'name',
-                    title: 'name',
+                    field: 'Name',
+                    title: 'Name',
                     sortable:true,
                 },{
-                    field: 'item1',
-                    title: 'item1',
+                    field: 'Formula',
+                    title: 'Formula',
                     sortable:true,
                 }, {
-                    field: 'item2',
-                    title: 'item2',
+                    field: 'PubChem-Id',
+                    title: 'PubChem-Id',
                     sortable:true,
                 }
             ]

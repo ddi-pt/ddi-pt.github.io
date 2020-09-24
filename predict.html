@@ -147,21 +147,15 @@
 
                     <div class="card">
                         <div class="card-header">
-                            Result of prediction
+                            Predicted DDI
                         </div>
                         <div class="card-body">
                             <div id="exportToolbar">
-							<div class="form-inline" role="form">
-								<div class="form-group">
-                                <button id="re-bt-re" class="btn btn-secondary">Reset</button>&nbsp;
-								</div>
-								<div class="form-group">
                                 <select id="sel_exportoption" class="custom-select">
                                     <option selected="selected" value="selected">Export selected data</option>
                                     <option value="basic">Export data in this page</option>
                                     <option value="all">Export all data</option>
                                 </select>
-								</div>
 							</div>
                             </div>
                             <div class="table-responsive">
@@ -219,8 +213,6 @@
             contentType: 'application/x-www-form-urlencoded',
             toolbar: '#exportToolbar',
             clickToSelect: true,
-            search: true,
-            showSearchButton: true,
             showExport: true,
             exportDataType: 'selected',
             method: 'client',
@@ -272,7 +264,7 @@
             },
         });
         $("#sel_exportoption").change(function () {
-            $('#table-test').bootstrapTable('refreshOptions', {
+            $('#table-results').bootstrapTable('refreshOptions', {
                 exportDataType: $(this).val()
             });
         });
@@ -405,12 +397,7 @@
                 $("#table-drug-b").bootstrapTable('resetSearch');
             });
         });
-		
-		$(function(){
-            $("#re-bt-re").click(function(){
-                $("#table-results").bootstrapTable('resetSearch');
-            });
-        });
+
     </script>
 </body>
 </html>

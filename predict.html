@@ -283,12 +283,8 @@
             striped: true,
             pagination: true,
             pageList: [5, 10, 20],
-            pageSize: 10,
-            pageNumber: 1,
 			uniqueId: 'DrugBank-Id',
             sidePagination: 'client',
-            sortName: 'DrugBank-Id',
-            sortOrder: 'asc',
             columns: [
                 {
                     field: 'state',
@@ -358,14 +354,15 @@
 
         $(function(){
             $("#ok-a").click(function(){
+                $("#table-drug-a").bootstrapTable('load',$("#table-drug-a").bootstrapTable('getData'));
                 var sl = $("#table-drug-a").bootstrapTable('getSelections');
-				console.log(sl);
-                $("#drug-a").val(sl[0].Name)
+                $("#drug-a").val(sl[0].Name);
             });
         });
 
         $(function(){
             $("#ok-b").click(function(){
+                $("#table-drug-b").bootstrapTable('load',$("#table-drug-b").bootstrapTable('getData'));
                 var sl = $("#table-drug-b").bootstrapTable('getSelections');
                 $("#drug-b").val(sl[0].Name);
             });

@@ -377,6 +377,7 @@
         $(function(){
             $("#ok-b").click(function(){
                 var sl = $("#table-drug-b").bootstrapTable('getSelections');
+				console.log(sl);
                 $("#drug-b").val(sl[0].Name);
             });
         });

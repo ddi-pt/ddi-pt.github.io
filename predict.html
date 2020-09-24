@@ -354,15 +354,13 @@
 
         $(function(){
             $("#ok-a").click(function(){
-                var sl = $("#table-drug-a").bootstrapTable('getSelections');
-                $("#drug-a").val(sl[0].Name);
+                $("#drug-a").val(d_name_a);
             });
         });
 
         $(function(){
             $("#ok-b").click(function(){
-                var sl = $("#table-drug-b").bootstrapTable('getSelections');
-                $("#drug-b").val(sl[0].Name);
+                $("#drug-b").val(d_name_b);
             });
         });
 
@@ -381,22 +379,45 @@
 		$(function(){
             $("#re-bt-a").click(function(){
                 $("#table-drug-a").bootstrapTable('resetSearch');
-                $("#table-drug-a").bootstrapTable('refresh');
             });
         });
 		
 		$(function(){
             $("#re-bt-b").click(function(){
                 $("#table-drug-b").bootstrapTable('resetSearch');
-                $("#table-drug-b").bootstrapTable('refresh');
             });
         });
+
+        var d_name_a;
+        $(function(){
+            $('#table-drug-a').on('check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table',
+                function (e, rowsAfter, rowsBefore) {
+                    var rows = rowsAfter;
+
+                    if (e.type === 'uncheck-all') {
+                        rows = rowsBefore;
+                    };
+
+                    d_name_a = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
+                        return row.Name;
+                    });
+                });
+        });
 		
-		$(function(){
-            $("[name='search']").click(function(){
-                $("#table-drug-a").bootstrapTable('load',$("#table-drug-a").bootstrapTable('getData'));
-                $("#table-drug-b").bootstrapTable('load',$("#table-drug-b").bootstrapTable('getData'));
-            });
+		var d_name_b;
+        $(function(){
+            $('#table-drug-b').on('check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table',
+                function (e, rowsAfter, rowsBefore) {
+                    var rows = rowsAfter;
+
+                    if (e.type === 'uncheck-all') {
+                        rows = rowsBefore;
+                    };
+
+                    d_name_b = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
+                        return row.Name;
+                    });
+                });
         });
 
     </script>

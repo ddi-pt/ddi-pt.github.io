@@ -278,6 +278,7 @@
             search: true,
 			showSearchButton: true,
             searchAlign: 'left',
+			maintainMetaData: true,
             cache: true,
             striped: true,
             pagination: true,
@@ -323,6 +324,7 @@
             search: true,
 			showSearchButton: true,
             searchAlign: 'left',
+			maintainMetaData: true,
             cache: true,
             striped: true,
             pagination: true,
@@ -360,15 +362,14 @@
 
         $(function(){
             $("#ok-a").click(function(){
-                var sl = $("#table-drug-a").bootstrapTable('getAllSelections');
+                var sl = $("#table-drug-a").bootstrapTable('getSelections');
                 $("#drug-a").val(sl[0].Name)
             });
         });
 
         $(function(){
             $("#ok-b").click(function(){
-                var sl = $("#table-drug-b").bootstrapTable('getAllSelections');
-				console.log(sl);
+                var sl = $("#table-drug-b").bootstrapTable('getSelections');
                 $("#drug-b").val(sl[0].Name);
             });
         });

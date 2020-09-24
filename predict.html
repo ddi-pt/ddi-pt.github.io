@@ -221,7 +221,7 @@
             pageList: [10, 20, 50],
             pageSize: 10,
             pageNumber: 1,
-            idField:'id',
+            maintainMetaData: true,
             sidePagination: 'client',
             queryParams: function (params) {
                 return {
@@ -285,7 +285,6 @@
             pageSize: 10,
             pageNumber: 1,
 			uniqueId: 'DrugBank-Id',
-            idField:'state',
             sidePagination: 'client',
             sortName: 'DrugBank-Id',
             sortOrder: 'asc',
@@ -331,7 +330,6 @@
             pageSize: 10,
             pageNumber: 1,
 			uniqueId: 'DrugBank-Id',
-            idField:'state',
             sidePagination: 'client',
             sortName: 'DrugBank-Id',
             sortOrder: 'asc',
@@ -362,15 +360,14 @@
 
         $(function(){
             $("#ok-a").click(function(){
-                var sl = $("#table-drug-a").bootstrapTable('getSelections');
+                var sl = $("#table-drug-a").bootstrapTable('getAllSelections');
                 $("#drug-a").val(sl[0].Name)
             });
         });
 
         $(function(){
             $("#ok-b").click(function(){
-                var sl = $("#table-drug-b").bootstrapTable('getSelections');
-				console.log(sl);
+                var sl = $("#table-drug-b").bootstrapTable('getAllSelections');
                 $("#drug-b").val(sl[0].Name);
             });
         });

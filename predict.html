@@ -354,7 +354,6 @@
 
         $(function(){
             $("#ok-a").click(function(){
-                $("#table-drug-a").bootstrapTable('load',$("#table-drug-a").bootstrapTable('getData'));
                 var sl = $("#table-drug-a").bootstrapTable('getSelections');
                 $("#drug-a").val(sl[0].Name);
             });
@@ -362,7 +361,6 @@
 
         $(function(){
             $("#ok-b").click(function(){
-                $("#table-drug-b").bootstrapTable('load',$("#table-drug-b").bootstrapTable('getData'));
                 var sl = $("#table-drug-b").bootstrapTable('getSelections');
                 $("#drug-b").val(sl[0].Name);
             });
@@ -382,13 +380,26 @@
 		
 		$(function(){
             $("#re-bt-a").click(function(){
-                $("#table-drug-a").bootstrapTable('resetSearch');
+                $("#table-drug-a").bootstrapTable('refresh');
             });
         });
 		
 		$(function(){
             $("#re-bt-b").click(function(){
-                $("#table-drug-b").bootstrapTable('resetSearch');
+                $("#table-drug-b").bootstrapTable('refresh');
+            });
+        });
+		
+		$(function(){
+            $("#re-bt-a").click(function(){
+                $("#table-drug-a").bootstrapTable('refresh');
+            });
+        });
+		
+		$(function(){
+            $("[name='search']").click(function(){
+                $("#table-drug-a").bootstrapTable('load',$("#table-drug-a").bootstrapTable('getData'));
+                $("#table-drug-b").bootstrapTable('load',$("#table-drug-b").bootstrapTable('getData'));
             });
         });
 

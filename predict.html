@@ -380,19 +380,15 @@
 		
 		$(function(){
             $("#re-bt-a").click(function(){
+                $("#table-drug-a").bootstrapTable('resetSearch');
                 $("#table-drug-a").bootstrapTable('refresh');
             });
         });
 		
 		$(function(){
             $("#re-bt-b").click(function(){
+                $("#table-drug-b").bootstrapTable('resetSearch');
                 $("#table-drug-b").bootstrapTable('refresh');
-            });
-        });
-		
-		$(function(){
-            $("#re-bt-a").click(function(){
-                $("#table-drug-a").bootstrapTable('refresh');
             });
         });
 		

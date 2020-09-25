@@ -530,7 +530,7 @@
             $("#ok-pt").click(function(){
 				if ($.inArray(pt_name_a[0], sel_pt) == -1) {
 					sel_pt.push(pt_name_a[0]);
-					$("#d-l").append("<li class='list-group-item'>" + pt_name_a[0] + "<button type='button' class='close' onclick='delRow_d(this)'><span aria-hidden='true'>&times;</span></button></li>");
+					$("#pt-l").append("<li class='list-group-item'>" + pt_name_a[0] + "<button type='button' class='close' onclick='delRow_pt(this)'><span aria-hidden='true'>&times;</span></button></li>");
 					$('#table-drug').bootstrapTable('filterBy', {'Name': sel_pt});
 				} else {
 					

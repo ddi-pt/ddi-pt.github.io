@@ -100,7 +100,12 @@
 <div id="s-pt" style="display: none;">
 <div class="row mt-3">
   <div class="col-8 offset-2">
-    <button type="button" class="btn btn-secondary btn-block" type="button" data-toggle="modal" data-target="#Modal-a">Add</button>
+    <button type="button" class="btn btn-secondary btn-block" type="button" data-toggle="modal" data-target="#Modal-pt">Add</button>
+  </div>
+  <div class="col-12">
+      <ul class="list-group mt-3" id="pt-l">
+
+      </ul>
   </div>
 </div>
 </div>
@@ -121,7 +126,12 @@
 <div id="s-p" style="display: none;">
 <div class="row mt-3">
   <div class="col-8 offset-2">
-    <button type="button" class="btn btn-secondary btn-block" type="button" data-toggle="modal" data-target="#Modal-a">Add</button>
+    <button type="button" class="btn btn-secondary btn-block" type="button" data-toggle="modal" data-target="#Modal-p">Add</button>
+  </div>
+  <div class="col-12">
+      <ul class="list-group mt-3" id="p-l">
+
+      </ul>
   </div>
 </div>
 </div>
@@ -145,6 +155,11 @@
 <div class="row mt-3">
   <div class="col-8 offset-2">
     <button type="button" class="btn btn-secondary btn-block" type="button" data-toggle="modal" data-target="#Modal-a">Add</button>
+  </div>
+  <div class="col-12">
+      <ul class="list-group mt-3" id="a-l">
+
+      </ul>
   </div>
 </div>
 </div>
@@ -202,6 +217,81 @@
                     </div>
                 </div>
             </div>
+			
+            <div class="modal fade" id="Modal-pt" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalLabel">Selelct a protein type</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="toolbar-pt">
+                                <button id="re-bt-pt" class="btn btn-secondary">Reset</button>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="table-pt"></table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="ok-pt">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+            <div class="modal fade" id="Modal-p" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalLabel">Selelct a protein</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="toolbar-p">
+                                <button id="re-bt-p" class="btn btn-secondary">Reset</button>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="table-p"></table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="ok-p">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="Modal-a" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalLabel">Selelct an action</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="toolbar-a">
+                                <button id="re-bt-a" class="btn btn-secondary">Reset</button>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="table-a"></table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="ok-a">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>			
 
 </main>
 
@@ -276,30 +366,6 @@
 				sel_d = [];
 				console.log(sel_d);
 				$('#table-drug').bootstrapTable('filterBy',);
-			};
-        });
-		
-		$("#op-p").change(function () {
-            if ($(this).val() == 'selected') {
-				$("#s-p").show();
-			} else if ($(this).val() == 'all'){
-				$("#s-p").hide();
-			};
-        });
-		
-		$("#op-pt").change(function () {
-            if ($(this).val() == 'selected') {
-				$("#s-pt").show();
-			} else if ($(this).val() == 'all'){
-				$("#s-pt").hide();
-			};
-        });
-		
-		$("#op-a").change(function () {
-            if ($(this).val() == 'selected') {
-				$("#s-a").show();
-			} else if ($(this).val() == 'all'){
-				$("#s-a").hide();
 			};
         });
 		
@@ -393,6 +459,109 @@
 				};
             });
         });
+		
+		$('#table-pt').bootstrapTable({
+            url: 'https://pharmpkdb.com:14488/model/get_drugs',
+            contentType: 'application/x-www-form-urlencoded',
+            toolbar: '#toolbar-pt',
+			toolbarAlign: 'right',
+            clickToSelect: true,
+            singleSelect: true,
+            search: true,
+			showSearchButton: true,
+            searchAlign: 'left',
+			maintainMetaData: true,
+            cache: true,
+            striped: true,
+            pagination: true,
+            pageList: [5, 10, 20],
+			uniqueId: 'DrugBank-Id',
+            sidePagination: 'client',
+            columns: [
+                {
+                    field: 'state',
+                    checkbox: true,
+                    align: 'center',
+                }, {
+                    field: 'DrugBank-Id',
+                    title: 'DrugBank-Id',
+                    sortable:true,
+                }, {
+                    field: 'Name',
+                    title: 'Name',
+                    sortable:true,
+                },{
+                    field: 'Cas-Number',
+                    title: 'Cas-Number',
+                    sortable:true,
+                }, {
+                    field: 'PubChem-Id',
+                    title: 'PubChem-Id',
+                    sortable:true,
+                }
+            ]
+        });
+		
+		$(function(){
+            $("#re-bt-pt").click(function(){
+                $("#table-pt").bootstrapTable('resetSearch');
+            });
+        });
+		
+        var pt_name_a;
+        $(function(){
+            $('#table-pt').on('check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table',
+                function (e, rowsAfter, rowsBefore) {
+                    var rows = rowsAfter;
+
+                    if (e.type === 'uncheck-all') {
+                        rows = rowsBefore;
+                    };
+
+                    pt_name_a = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
+                        return row.Name;
+                    });
+                });
+        });
+		
+		var sel_pt = [];
+		
+        $(function(){
+            $("#ok-pt").click(function(){
+				if ($.inArray(pt_name_a[0], sel_pt) == -1) {
+					sel_pt.push(pt_name_a[0]);
+					$("#d-l").append("<li class='list-group-item'>" + pt_name_a[0] + "<button type='button' class='close' onclick='delRow_d(this)'><span aria-hidden='true'>&times;</span></button></li>");
+					$('#table-drug').bootstrapTable('filterBy', {'Name': sel_pt});
+				} else {
+					
+				};
+            });
+        });
+		
+		$("#op-pt").change(function () {
+            if ($(this).val() == 'selected') {
+				$("#s-pt").show();
+			} else if ($(this).val() == 'all'){
+				$("#s-pt").hide();
+				console.log(13);
+				$("#pt-l").empty();
+				sel_d = [];
+				console.log(sel_pt);
+				$('#table-drug').bootstrapTable('filterBy',);
+			};
+        });
+		
+		function delRow_pt(obj) {
+			rd = $(obj).parent()[0].innerText;
+			rd = rd.slice(0,rd.length-2);
+			sel_pt.forEach(function(item, index, arr) {
+				if(item === rd) {
+					arr.splice(index, 1);
+				}
+			});
+			$('#table-drug').bootstrapTable('filterBy', {'Name': sel_pt});
+            $(obj).parent().remove();
+        };
 		
 		
     </script>

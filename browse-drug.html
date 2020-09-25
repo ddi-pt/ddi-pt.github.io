@@ -543,9 +543,8 @@
 				$("#s-pt").show();
 			} else if ($(this).val() == 'all'){
 				$("#s-pt").hide();
-				console.log(13);
 				$("#pt-l").empty();
-				sel_d = [];
+				sel_pt = [];
 				console.log(sel_pt);
 				$('#table-drug').bootstrapTable('filterBy',);
 			};
@@ -560,6 +559,210 @@
 				}
 			});
 			$('#table-drug').bootstrapTable('filterBy', {'Name': sel_pt});
+            $(obj).parent().remove();
+        };
+		
+		$('#table-p').bootstrapTable({
+            url: 'https://pharmpkdb.com:14488/model/get_drugs',
+            contentType: 'application/x-www-form-urlencoded',
+            toolbar: '#toolbar-p',
+			toolbarAlign: 'right',
+            clickToSelect: true,
+            singleSelect: true,
+            search: true,
+			showSearchButton: true,
+            searchAlign: 'left',
+			maintainMetaData: true,
+            cache: true,
+            striped: true,
+            pagination: true,
+            pageList: [5, 10, 20],
+			uniqueId: 'DrugBank-Id',
+            sidePagination: 'client',
+            columns: [
+                {
+                    field: 'state',
+                    checkbox: true,
+                    align: 'center',
+                }, {
+                    field: 'DrugBank-Id',
+                    title: 'DrugBank-Id',
+                    sortable:true,
+                }, {
+                    field: 'Name',
+                    title: 'Name',
+                    sortable:true,
+                },{
+                    field: 'Cas-Number',
+                    title: 'Cas-Number',
+                    sortable:true,
+                }, {
+                    field: 'PubChem-Id',
+                    title: 'PubChem-Id',
+                    sortable:true,
+                }
+            ]
+        });
+		
+		$(function(){
+            $("#re-bt-p").click(function(){
+                $("#table-p").bootstrapTable('resetSearch');
+            });
+        });
+		
+        var p_name_a;
+        $(function(){
+            $('#table-p').on('check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table',
+                function (e, rowsAfter, rowsBefore) {
+                    var rows = rowsAfter;
+
+                    if (e.type === 'uncheck-all') {
+                        rows = rowsBefore;
+                    };
+
+                    p_name_a = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
+                        return row.Name;
+                    });
+                });
+        });
+		
+		var sel_p = [];
+		
+        $(function(){
+            $("#ok-p").click(function(){
+				if ($.inArray(p_name_a[0], sel_p) == -1) {
+					sel_p.push(p_name_a[0]);
+					$("#p-l").append("<li class='list-group-item'>" + p_name_a[0] + "<button type='button' class='close' onclick='delRow_p(this)'><span aria-hidden='true'>&times;</span></button></li>");
+					$('#table-drug').bootstrapTable('filterBy', {'Name': sel_p});
+				} else {
+					
+				};
+            });
+        });
+		
+		$("#op-p").change(function () {
+            if ($(this).val() == 'selected') {
+				$("#s-p").show();
+			} else if ($(this).val() == 'all'){
+				$("#s-p").hide();
+				$("#p-l").empty();
+				sel_p = [];
+				console.log(sel_p);
+				$('#table-drug').bootstrapTable('filterBy',);
+			};
+        });
+		
+		function delRow_p(obj) {
+			rd = $(obj).parent()[0].innerText;
+			rd = rd.slice(0,rd.length-2);
+			sel_p.forEach(function(item, index, arr) {
+				if(item === rd) {
+					arr.splice(index, 1);
+				}
+			});
+			$('#table-drug').bootstrapTable('filterBy', {'Name': sel_p});
+            $(obj).parent().remove();
+        };
+		
+		$('#table-a').bootstrapTable({
+            url: 'https://pharmpkdb.com:14488/model/get_drugs',
+            contentType: 'application/x-www-form-urlencoded',
+            toolbar: '#toolbar-a',
+			toolbarAlign: 'right',
+            clickToSelect: true,
+            singleSelect: true,
+            search: true,
+			showSearchButton: true,
+            searchAlign: 'left',
+			maintainMetaData: true,
+            cache: true,
+            striped: true,
+            pagination: true,
+            pageList: [5, 10, 20],
+			uniqueId: 'DrugBank-Id',
+            sidePagination: 'client',
+            columns: [
+                {
+                    field: 'state',
+                    checkbox: true,
+                    align: 'center',
+                }, {
+                    field: 'DrugBank-Id',
+                    title: 'DrugBank-Id',
+                    sortable:true,
+                }, {
+                    field: 'Name',
+                    title: 'Name',
+                    sortable:true,
+                },{
+                    field: 'Cas-Number',
+                    title: 'Cas-Number',
+                    sortable:true,
+                }, {
+                    field: 'PubChem-Id',
+                    title: 'PubChem-Id',
+                    sortable:true,
+                }
+            ]
+        });
+		
+		$(function(){
+            $("#re-bt-a").click(function(){
+                $("#table-a").bootstrapTable('resetSearch');
+            });
+        });
+		
+        var a_name_a;
+        $(function(){
+            $('#table-a').on('check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table',
+                function (e, rowsAfter, rowsBefore) {
+                    var rows = rowsAfter;
+
+                    if (e.type === 'uncheck-all') {
+                        rows = rowsBefore;
+                    };
+
+                    a_name_a = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
+                        return row.Name;
+                    });
+                });
+        });
+		
+		var sel_a = [];
+		
+        $(function(){
+            $("#ok-a").click(function(){
+				if ($.inArray(a_name_a[0], sel_a) == -1) {
+					sel_p.push(a_name_a[0]);
+					$("#a-l").append("<li class='list-group-item'>" + a_name_a[0] + "<button type='button' class='close' onclick='delRow_a(this)'><span aria-hidden='true'>&times;</span></button></li>");
+					$('#table-drug').bootstrapTable('filterBy', {'Name': sel_a});
+				} else {
+					
+				};
+            });
+        });
+		
+		$("#op-a").change(function () {
+            if ($(this).val() == 'selected') {
+				$("#s-a").show();
+			} else if ($(this).val() == 'all'){
+				$("#s-a").hide();
+				$("#a-l").empty();
+				sel_a = [];
+				console.log(sel_a);
+				$('#table-drug').bootstrapTable('filterBy',);
+			};
+        });
+		
+		function delRow_a(obj) {
+			rd = $(obj).parent()[0].innerText;
+			rd = rd.slice(0,rd.length-2);
+			sel_a.forEach(function(item, index, arr) {
+				if(item === rd) {
+					arr.splice(index, 1);
+				}
+			});
+			$('#table-drug').bootstrapTable('filterBy', {'Name': sel_a});
             $(obj).parent().remove();
         };
 		

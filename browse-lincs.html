@@ -89,12 +89,12 @@
 
 <div class="card">
   <div class="card-header">
-    Gene Filter
+    Gene type Filter
   </div>
   <div class="card-body">
     <select id="op-pt" class="custom-select">
-        <option selected="selected" value="all">All protein types</option>
-        <option value="selected">Selected protein types</option>
+        <option selected="selected" value="all">All gene types</option>
+        <option value="selected">Selected gene types</option>
     </select>
 	
 <div id="s-pt" style="display: none;">
@@ -112,7 +112,32 @@
 	
   </div>
 </div>
+<br>
+<div class="card">
+  <div class="card-header">
+    Gene Filter
+  </div>
+  <div class="card-body">
+    <select id="op-p" class="custom-select">
+        <option selected="selected" value="all">All genes</option>
+        <option value="selected">Selected genes</option>
+    </select>
+	
+<div id="s-p" style="display: none;">
+<div class="row mt-3">
+  <div class="col-8 offset-2">
+    <button type="button" class="btn btn-secondary btn-block" type="button" data-toggle="modal" data-target="#Modal-p">Add</button>
+  </div>
+  <div class="col-12">
+      <ul class="list-group mt-3" id="p-l">
 
+      </ul>
+  </div>
+</div>
+</div>
+	
+  </div>
+</div>
 	<br>
 	<br>
     </div>
@@ -610,109 +635,6 @@
 			$('#table-drug').bootstrapTable('filterBy', {'Name': sel_p});
             $(obj).parent().remove();
         };
-		
-		$('#table-a').bootstrapTable({
-            url: 'https://pharmpkdb.com:14488/model/get_drugs',
-            contentType: 'application/x-www-form-urlencoded',
-            toolbar: '#toolbar-a',
-			toolbarAlign: 'right',
-            clickToSelect: true,
-            singleSelect: true,
-            search: true,
-			showSearchButton: true,
-            searchAlign: 'left',
-			maintainMetaData: true,
-            cache: true,
-            striped: true,
-            pagination: true,
-            pageList: [5, 10, 20],
-			uniqueId: 'DrugBank-Id',
-            sidePagination: 'client',
-            columns: [
-                {
-                    field: 'state',
-                    checkbox: true,
-                    align: 'center',
-                }, {
-                    field: 'DrugBank-Id',
-                    title: 'DrugBank-Id',
-                    sortable:true,
-                }, {
-                    field: 'Name',
-                    title: 'Name',
-                    sortable:true,
-                },{
-                    field: 'Cas-Number',
-                    title: 'Cas-Number',
-                    sortable:true,
-                }, {
-                    field: 'PubChem-Id',
-                    title: 'PubChem-Id',
-                    sortable:true,
-                }
-            ]
-        });
-		
-		$(function(){
-            $("#re-bt-a").click(function(){
-                $("#table-a").bootstrapTable('resetSearch');
-            });
-        });
-		
-        var a_name_a;
-        $(function(){
-            $('#table-a').on('check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table',
-                function (e, rowsAfter, rowsBefore) {
-                    var rows = rowsAfter;
-
-                    if (e.type === 'uncheck-all') {
-                        rows = rowsBefore;
-                    };
-
-                    a_name_a = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
-                        return row.Name;
-                    });
-                });
-        });
-		
-		var sel_a = [];
-		
-        $(function(){
-            $("#ok-a").click(function(){
-				if ($.inArray(a_name_a[0], sel_a) == -1) {
-					sel_a.push(a_name_a[0]);
-					$("#a-l").append("<li class='list-group-item'>" + a_name_a[0] + "<button type='button' class='close' onclick='delRow_a(this)'><span aria-hidden='true'>&times;</span></button></li>");
-					$('#table-drug').bootstrapTable('filterBy', {'Name': sel_a});
-				} else {
-					
-				};
-            });
-        });
-		
-		$("#op-a").change(function () {
-            if ($(this).val() == 'selected') {
-				$("#s-a").show();
-			} else if ($(this).val() == 'all'){
-				$("#s-a").hide();
-				$("#a-l").empty();
-				sel_a = [];
-				console.log(sel_a);
-				$('#table-drug').bootstrapTable('filterBy',);
-			};
-        });
-		
-		function delRow_a(obj) {
-			rd = $(obj).parent()[0].innerText;
-			rd = rd.slice(0,rd.length-2);
-			sel_a.forEach(function(item, index, arr) {
-				if(item === rd) {
-					arr.splice(index, 1);
-				}
-			});
-			$('#table-drug').bootstrapTable('filterBy', {'Name': sel_a});
-            $(obj).parent().remove();
-        };
-		
 		
     </script>
 </body>

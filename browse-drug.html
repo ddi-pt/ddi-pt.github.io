@@ -733,7 +733,7 @@
         $(function(){
             $("#ok-a").click(function(){
 				if ($.inArray(a_name_a[0], sel_a) == -1) {
-					sel_p.push(a_name_a[0]);
+					sel_a.push(a_name_a[0]);
 					$("#a-l").append("<li class='list-group-item'>" + a_name_a[0] + "<button type='button' class='close' onclick='delRow_a(this)'><span aria-hidden='true'>&times;</span></button></li>");
 					$('#table-drug').bootstrapTable('filterBy', {'Name': sel_a});
 				} else {

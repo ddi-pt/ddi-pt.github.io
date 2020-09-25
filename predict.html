@@ -147,14 +147,33 @@
                     </div>
                 </div>
             </div>
-
+                    <div class="card">
+                        <div class="card-header">
+                            Known DDI
+                        </div>
+                        <div class="card-body">
+                            <div id="exptoolbar1">
+                                <select id="sel_exp1" class="custom-select">
+                                    <option selected="selected" value="selected">Export selected data</option>
+                                    <option value="basic">Export data in this page</option>
+                                    <option value="all">Export all data</option>
+                                </select>
+							</div>
+                            <div class="table-responsive">
+                                <table id="table-known"></table>
+                            </div>
+							<br>
+                        </div>
+                    </div>
+        <br>
+        <br>
                     <div class="card">
                         <div class="card-header">
                             Predicted DDI
                         </div>
                         <div class="card-body">
-                            <div id="exportToolbar">
-                                <select id="sel_exportoption" class="custom-select">
+                            <div id="exptoolbar2">
+                                <select id="sel_exp2" class="custom-select">
                                     <option selected="selected" value="selected">Export selected data</option>
                                     <option value="basic">Export data in this page</option>
                                     <option value="all">Export all data</option>
@@ -187,10 +206,10 @@
     <script src="https://ddi-pt.github.io/js/bootstrap-table/extensions/export/bootstrap-table-export.min.js"></script>
 
     <script>
-        $('#table-results').bootstrapTable({
+        $('#table-known').bootstrapTable({
             url: 'table/data',
             contentType: 'application/x-www-form-urlencoded',
-            toolbar: '#exportToolbar',
+            toolbar: '#exptoolbar1',
             clickToSelect: true,
             showExport: true,
             exportDataType: 'selected',
@@ -242,7 +261,68 @@
                 return "No result";
             },
         });
-        $("#sel_exportoption").change(function () {
+        $("#sel_exp1").change(function () {
+            $('#table-known').bootstrapTable('refreshOptions', {
+                exportDataType: $(this).val()
+            });
+        });
+	
+        $('#table-results').bootstrapTable({
+            url: 'table/data',
+            contentType: 'application/x-www-form-urlencoded',
+            toolbar: '#exptoolbar2',
+            clickToSelect: true,
+            showExport: true,
+            exportDataType: 'selected',
+            method: 'client',
+            cache: true,
+            striped: true,
+            pagination: true,
+            pageList: [10, 20, 50],
+            pageSize: 10,
+            pageNumber: 1,
+            maintainMetaData: true,
+            sidePagination: 'client',
+            queryParams: function (params) {
+                return {
+                    pageSize: params.limit,
+                    offset: params.offset,
+                    sort: params.sort,
+                    sortOrder: params.order,
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    search: $('.search-input').val()
+                }
+            },
+            sortName: 'id',
+            sortOrder: 'asc',
+            columns: [
+                {
+                    field: 'state',
+                    checkbox: true,
+                    align: 'center',
+                }, {
+                    field: 'id',
+                    title: 'id',
+                    sortable:true,
+                }, {
+                    field: 'name',
+                    title: 'name',
+                    sortable:true,
+                },{
+                    field: 'item1',
+                    title: 'item1',
+                    sortable:true,
+                }, {
+                    field: 'item2',
+                    title: 'item2',
+                    sortable:true,
+                }
+            ],
+			formatNoMatches: function(){
+                return "No result";
+            },
+        });
+        $("#sel_exp2").change(function () {
             $('#table-results').bootstrapTable('refreshOptions', {
                 exportDataType: $(this).val()
             });

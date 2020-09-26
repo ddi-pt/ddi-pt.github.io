@@ -57,7 +57,7 @@
     <main role="main" class="container flex-shrink-0">
         <br>
         <br>
-            <form action="" novalidate id="drug-pair">
+            <form id="drug-pair">
                 <div class="form-row justify-content-center">
                     <div class="col-md-8 p-3">
                         <label class="sr-only" for="disabledSelect">Drug A</label>
@@ -65,12 +65,12 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Drug A</div>
                             </div>
-                            <input type="text" class="form-control" id="drug-a" placeholder="Drug name" required="required" pattern="[A-Za-z0-9]{1,50}">
+                            <input type="text" class="form-control" id="drug-a" placeholder="Drug name">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modal-a">Select</button>
                             </div>
                             <div class="invalid-feedback">
-                                Please enter a correct drug or select a drug
+                                Please enter a valid drug or select a drug
                             </div>
                         </div>
                     </div>
@@ -81,18 +81,18 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Drug B</div>
                             </div>
-                            <input type="text" class="form-control" id="drug-b" placeholder="Drug name" required="required" pattern="[A-Za-z0-9]{1,50}">
+                            <input type="text" class="form-control" id="drug-b" placeholder="Drug name">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#Modal-b">Select</button>
                             </div>
                             <div class="invalid-feedback">
-                                Please enter a correct drug or select a drug
+                                Please enter a valid drug or select a drug
                             </div>
                         </div>
                     </div>
                 </div>
 				<div class="text-center p-3">
-					<button class="btn btn-primary" type="submit">Submit</button>
+					<button class="btn btn-primary" type="submit" id="s">Submit</button>
 				</div>
             </form>
             <br>
@@ -207,13 +207,11 @@
 
     <script>
         $('#table-known').bootstrapTable({
-            url: 'table/data',
             contentType: 'application/x-www-form-urlencoded',
             toolbar: '#exptoolbar1',
             clickToSelect: true,
             showExport: true,
             exportDataType: 'selected',
-            method: 'client',
             cache: true,
             striped: true,
             pagination: true,
@@ -268,13 +266,11 @@
         });
 	
         $('#table-results').bootstrapTable({
-            url: 'table/data',
             contentType: 'application/x-www-form-urlencoded',
             toolbar: '#exptoolbar2',
             clickToSelect: true,
             showExport: true,
             exportDataType: 'selected',
-            method: 'client',
             cache: true,
             striped: true,
             pagination: true,
@@ -351,20 +347,20 @@
                     checkbox: true,
                     align: 'center',
                 }, {
-                    field: 'DrugBank-Id',
-                    title: 'DrugBank-Id',
+                    field: 'DrugBank_Id',
+                    title: 'DrugBank Id',
                     sortable:true,
                 }, {
                     field: 'Name',
                     title: 'Name',
                     sortable:true,
                 },{
-                    field: 'Cas-Number',
-                    title: 'Cas-Number',
+                    field: 'Cas_Number',
+                    title: 'Cas Number',
                     sortable:true,
                 }, {
-                    field: 'PubChem-Id',
-                    title: 'PubChem-Id',
+                    field: 'PubChem_Id',
+                    title: 'PubChem Id',
                     sortable:true,
                 }
             ]
@@ -393,20 +389,20 @@
                     checkbox: true,
                     align: 'center',
                 }, {
-                    field: 'DrugBank-Id',
-                    title: 'DrugBank-Id',
+                    field: 'DrugBank_Id',
+                    title: 'DrugBank Id',
                     sortable:true,
                 }, {
                     field: 'Name',
                     title: 'Name',
                     sortable:true,
                 },{
-                    field: 'Cas-Number',
-                    title: 'Cas-Number',
+                    field: 'Cas_Number',
+                    title: 'Cas Number',
                     sortable:true,
                 }, {
-                    field: 'PubChem-Id',
-                    title: 'PubChem-Id',
+                    field: 'PubChem_Id',
+                    title: 'PubChem Id',
                     sortable:true,
                 }
             ]
@@ -479,7 +475,73 @@
                     });
                 });
         });
-
+		
+		var flag_a;
+		var flag_b;
+		var check_l = [];
+		
+		$.get('https://www.pharmpkdb.com:14488/model/check', function(data){
+			$.each(data, function (i, d) {
+				check_l.push(d);
+			})
+			
+		});
+		
+		$(function(){
+		$('#s').click(function (e) {
+            e.preventDefault();
+			var d_a = String($('#drug-a').val()).toLowerCase();
+			var d_b = String($('#drug-b').val()).toLowerCase();
+			if (d_a == d_b) {
+				alert("Drug A and Drug B cannot be the same!");
+				$('#drug-a').val('');
+				$('#drug-b').val('');
+			} else {
+				if ($.inArray(d_a, check_l) == -1) {
+					$("#drug-a").removeClass('is-valid');
+					$("#drug-a").addClass('is-invalid');
+					flag_a = 0;
+				} else {
+					$("#drug-a").removeClass('is-invalid');
+					$("#drug-a").addClass('is-valid');
+					flag_a = 1;
+				};
+				if ($.inArray(d_b, check_l) == -1) {
+					$("#drug-b").removeClass('is-valid');
+					$("#drug-b").addClass('is-invalid');
+					flag_b = 0;
+				} else {
+					$("#drug-b").removeClass('is-invalid');
+					$("#drug-b").addClass('is-valid');
+					flag_b = 1;
+				};
+				
+				if (flag_a == 1 && flag_b == 1) {
+					$('#table-known').bootstrapTable('refreshOptions', {
+						url: 'https://pharmpkdb.com:14488/model/known',
+						method: 'post',
+						queryParams: function (params) {
+							return {
+								drug_a: d_a,
+								drug_b: d_b
+							}
+						},
+					});
+					$('#table-results').bootstrapTable('refreshOptions', {
+						url: 'https://pharmpkdb.com:14488/model/predict',
+						method: 'post',
+						queryParams: function (params) {
+							return {
+								drug_a: d_a,
+								drug_b: d_b
+							}
+						},
+					});
+				};
+			};
+		});
+		});
+		
     </script>
 </body>
 </html>

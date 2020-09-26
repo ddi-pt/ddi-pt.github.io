@@ -89,12 +89,12 @@
 
 <div class="card">
   <div class="card-header">
-    Gene type Filter
+    Type Filter
   </div>
   <div class="card-body">
     <select id="op-pt" class="custom-select">
-        <option selected="selected" value="all">All gene types</option>
-        <option value="selected">Selected gene types</option>
+        <option selected="selected" value="all">All types</option>
+        <option value="selected">Selected types</option>
     </select>
 	
 <div id="s-pt" style="display: none;">
@@ -194,7 +194,7 @@
                 <div class="modal-dialog modal-lg modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="ModalLabel">Selelct a gene type</h5>
+                            <h5 class="modal-title" id="ModalLabel">Selelct a type</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -260,7 +260,7 @@
 
     <script>
         $('#table-drug').bootstrapTable({
-            url: 'https://pharmpkdb.com:14488/model/get_drugs',
+            url: 'https://pharmpkdb.com:14488/model/browse_lincs',
             contentType: 'application/x-www-form-urlencoded',
             clickToSelect: true,
 			maintainMetaData: true,
@@ -272,7 +272,6 @@
             striped: true,
             pagination: true,
             pageList: [10, 20, 50, 100],
-			uniqueId: 'DrugBank-Id',
             sidePagination: 'client',
             columns: [
                 {
@@ -280,20 +279,20 @@
                     checkbox: true,
                     align: 'center',
                 }, {
-                    field: 'DrugBank-Id',
-                    title: 'DrugBank-Id',
+                    field: 'drugbank_id',
+                    title: 'Drug Id',
                     sortable:true,
                 }, {
-                    field: 'Name',
-                    title: 'Name',
+                    field: 'gene_id',
+                    title: 'Gene Id',
                     sortable:true,
                 },{
-                    field: 'Cas-Number',
-                    title: 'Cas-Number',
+                    field: 'type',
+                    title: 'Type',
                     sortable:true,
-                }, {
-                    field: 'PubChem-Id',
-                    title: 'PubChem-Id',
+                },{
+                    field: 'log2fc',
+                    title: 'Log2FC',
                     sortable:true,
                 }
             ]
@@ -308,10 +307,8 @@
 				$("#s-d").show();
 			} else if ($(this).val() == 'all'){
 				$("#s-d").hide();
-				console.log(13);
 				$("#d-l").empty();
 				sel_d = [];
-				console.log(sel_d);
 				$('#table-drug').bootstrapTable('filterBy',);
 			};
         });
@@ -324,7 +321,7 @@
 					arr.splice(index, 1);
 				}
 			});
-			$('#table-drug').bootstrapTable('filterBy', {'Name': sel_d});
+			filter_refresh();
             $(obj).parent().remove();
         };
 		
@@ -343,7 +340,6 @@
             striped: true,
             pagination: true,
             pageList: [5, 10, 20],
-			uniqueId: 'DrugBank-Id',
             sidePagination: 'client',
             columns: [
                 {
@@ -351,20 +347,20 @@
                     checkbox: true,
                     align: 'center',
                 }, {
-                    field: 'DrugBank-Id',
-                    title: 'DrugBank-Id',
+                    field: 'DrugBank_Id',
+                    title: 'Drug Id',
                     sortable:true,
                 }, {
                     field: 'Name',
                     title: 'Name',
                     sortable:true,
                 },{
-                    field: 'Cas-Number',
-                    title: 'Cas-Number',
+                    field: 'Cas_Number',
+                    title: 'Cas Number',
                     sortable:true,
                 }, {
-                    field: 'PubChem-Id',
-                    title: 'PubChem-Id',
+                    field: 'PubChem_Id',
+                    title: 'PubChem Id',
                     sortable:true,
                 }
             ]
@@ -372,11 +368,11 @@
 		
 		$(function(){
             $("#re-bt-d").click(function(){
-                $("#table-d").bootstrapTable('resetSearch');
+                filter_refresh();
             });
         });
 		
-        var d_name_a;
+        var d_name;
         $(function(){
             $('#table-d').on('check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table',
                 function (e, rowsAfter, rowsBefore) {
@@ -386,8 +382,8 @@
                         rows = rowsBefore;
                     };
 
-                    d_name_a = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
-                        return row.Name;
+                    d_name = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
+                        return row.DrugBank_Id;
                     });
                 });
         });
@@ -396,11 +392,10 @@
 		
         $(function(){
             $("#ok-d").click(function(){
-				if ($.inArray(d_name_a[0], sel_d) == -1) {
-					sel_d.push(d_name_a[0]);
-					console.log(sel_d);
-					$("#d-l").append("<li class='list-group-item'>" + d_name_a[0] + "<button type='button' class='close' onclick='delRow_d(this)'><span aria-hidden='true'>&times;</span></button></li>");
-					$('#table-drug').bootstrapTable('filterBy', {'Name': sel_d});
+				if ($.inArray(d_name[0], sel_d) == -1) {
+					sel_d.push(d_name[0]);
+					$("#d-l").append("<li class='list-group-item'>" + d_name[0] + "<button type='button' class='close' onclick='delRow_d(this)'><span aria-hidden='true'>&times;</span></button></li>");
+					filter_refresh();
 				} else {
 					
 				};
@@ -408,7 +403,7 @@
         });
 		
 		$('#table-pt').bootstrapTable({
-            url: 'https://pharmpkdb.com:14488/model/get_drugs',
+            url: 'https://pharmpkdb.com:14488/model/browse_lincs_gt',
             contentType: 'application/x-www-form-urlencoded',
             toolbar: '#toolbar-pt',
 			toolbarAlign: 'right',
@@ -422,7 +417,6 @@
             striped: true,
             pagination: true,
             pageList: [5, 10, 20],
-			uniqueId: 'DrugBank-Id',
             sidePagination: 'client',
             columns: [
                 {
@@ -430,21 +424,10 @@
                     checkbox: true,
                     align: 'center',
                 }, {
-                    field: 'DrugBank-Id',
-                    title: 'DrugBank-Id',
+                    field: 'gene_type',
+                    title: 'Gene Type',
                     sortable:true,
-                }, {
-                    field: 'Name',
-                    title: 'Name',
-                    sortable:true,
-                },{
-                    field: 'Cas-Number',
-                    title: 'Cas-Number',
-                    sortable:true,
-                }, {
-                    field: 'PubChem-Id',
-                    title: 'PubChem-Id',
-                    sortable:true,
+					align: 'center',
                 }
             ]
         });
@@ -455,7 +438,7 @@
             });
         });
 		
-        var pt_name_a;
+        var pt_name;
         $(function(){
             $('#table-pt').on('check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table',
                 function (e, rowsAfter, rowsBefore) {
@@ -465,8 +448,8 @@
                         rows = rowsBefore;
                     };
 
-                    pt_name_a = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
-                        return row.Name;
+                    pt_name = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
+                        return row.gene_type;
                     });
                 });
         });
@@ -475,10 +458,10 @@
 		
         $(function(){
             $("#ok-pt").click(function(){
-				if ($.inArray(pt_name_a[0], sel_pt) == -1) {
-					sel_pt.push(pt_name_a[0]);
-					$("#pt-l").append("<li class='list-group-item'>" + pt_name_a[0] + "<button type='button' class='close' onclick='delRow_pt(this)'><span aria-hidden='true'>&times;</span></button></li>");
-					$('#table-drug').bootstrapTable('filterBy', {'Name': sel_pt});
+				if ($.inArray(pt_name[0], sel_pt) == -1) {
+					sel_pt.push(pt_name[0]);
+					$("#pt-l").append("<li class='list-group-item'>" + pt_name[0] + "<button type='button' class='close' onclick='delRow_pt(this)'><span aria-hidden='true'>&times;</span></button></li>");
+					filter_refresh();
 				} else {
 					
 				};
@@ -492,8 +475,7 @@
 				$("#s-pt").hide();
 				$("#pt-l").empty();
 				sel_pt = [];
-				console.log(sel_pt);
-				$('#table-drug').bootstrapTable('filterBy',);
+				filter_refresh();
 			};
         });
 		
@@ -505,12 +487,12 @@
 					arr.splice(index, 1);
 				}
 			});
-			$('#table-drug').bootstrapTable('filterBy', {'Name': sel_pt});
+			filter_refresh();
             $(obj).parent().remove();
         };
 		
 		$('#table-p').bootstrapTable({
-            url: 'https://pharmpkdb.com:14488/model/get_drugs',
+            url: 'https://pharmpkdb.com:14488/model/browse_lincs_g',
             contentType: 'application/x-www-form-urlencoded',
             toolbar: '#toolbar-p',
 			toolbarAlign: 'right',
@@ -524,7 +506,6 @@
             striped: true,
             pagination: true,
             pageList: [5, 10, 20],
-			uniqueId: 'DrugBank-Id',
             sidePagination: 'client',
             columns: [
                 {
@@ -532,20 +513,20 @@
                     checkbox: true,
                     align: 'center',
                 }, {
-                    field: 'DrugBank-Id',
-                    title: 'DrugBank-Id',
+                    field: 'gene_id',
+                    title: 'Gene Id',
                     sortable:true,
                 }, {
-                    field: 'Name',
-                    title: 'Name',
+                    field: 'gene_type',
+                    title: 'Gene Type',
                     sortable:true,
                 },{
-                    field: 'Cas-Number',
-                    title: 'Cas-Number',
+                    field: 'symbol',
+                    title: 'Symbol',
                     sortable:true,
                 }, {
-                    field: 'PubChem-Id',
-                    title: 'PubChem-Id',
+                    field: 'name',
+                    title: 'Name',
                     sortable:true,
                 }
             ]
@@ -557,7 +538,7 @@
             });
         });
 		
-        var p_name_a;
+        var p_name;
         $(function(){
             $('#table-p').on('check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table',
                 function (e, rowsAfter, rowsBefore) {
@@ -567,8 +548,8 @@
                         rows = rowsBefore;
                     };
 
-                    p_name_a = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
-                        return row.Name;
+                    p_name = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
+                        return row.gene_id;
                     });
                 });
         });
@@ -577,10 +558,10 @@
 		
         $(function(){
             $("#ok-p").click(function(){
-				if ($.inArray(p_name_a[0], sel_p) == -1) {
-					sel_p.push(p_name_a[0]);
-					$("#p-l").append("<li class='list-group-item'>" + p_name_a[0] + "<button type='button' class='close' onclick='delRow_p(this)'><span aria-hidden='true'>&times;</span></button></li>");
-					$('#table-drug').bootstrapTable('filterBy', {'Name': sel_p});
+				if ($.inArray(p_name[0], sel_p) == -1) {
+					sel_p.push(p_name[0]);
+					$("#p-l").append("<li class='list-group-item'>" + p_name[0] + "<button type='button' class='close' onclick='delRow_p(this)'><span aria-hidden='true'>&times;</span></button></li>");
+					filter_refresh();
 				} else {
 					
 				};
@@ -594,21 +575,36 @@
 				$("#s-p").hide();
 				$("#p-l").empty();
 				sel_p = [];
-				console.log(sel_p);
-				$('#table-drug').bootstrapTable('filterBy',);
+				filter_refresh();
 			};
         });
 		
 		function delRow_p(obj) {
 			rd = $(obj).parent()[0].innerText;
 			rd = rd.slice(0,rd.length-2);
+			console.log(sel_p);
 			sel_p.forEach(function(item, index, arr) {
-				if(item === rd) {
+				if(String(item) === rd) {
 					arr.splice(index, 1);
 				}
 			});
-			$('#table-drug').bootstrapTable('filterBy', {'Name': sel_p});
+			console.log(sel_p);
+			filter_refresh();
             $(obj).parent().remove();
+        };
+		
+		function filter_refresh() {
+			var f_l = {};
+			if (sel_d.length != 0) {
+				f_l.drugbank_id = sel_d;
+			};
+			if (sel_pt.length != 0) {
+				f_l.type = sel_pt;
+			};
+			if (sel_p.length != 0) {
+				f_l.gene_id = sel_p;
+			};
+			$('#table-drug').bootstrapTable('filterBy', f_l, { 'filterAlgorithm': 'and'});
         };
 		
     </script>

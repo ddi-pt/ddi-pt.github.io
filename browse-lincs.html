@@ -488,7 +488,7 @@
 			rd = $(obj).parent()[0].innerText;
 			rd = rd.slice(0,rd.length-2);
 			sel_pt.forEach(function(item, index, arr) {
-				if(item === rd) {
+				if(String(item) === rd) {
 					arr.splice(index, 1);
 				}
 			});

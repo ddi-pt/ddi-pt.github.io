@@ -454,7 +454,7 @@
                     };
 
                     pt_name = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
-                        return row.gene_type;
+                        return row.type;
                     });
                 });
         });
@@ -601,7 +601,7 @@
 		function filter_refresh() {
 			var f_l = {};
 			if (sel_d.length != 0) {
-				f_l.drugbank_id = sel_d;
+				f_l.drug_id = sel_d;
 			};
 			if (sel_pt.length != 0) {
 				f_l.type = sel_pt;

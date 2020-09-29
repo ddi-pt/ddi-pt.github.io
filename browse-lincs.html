@@ -294,6 +294,10 @@
                     field: 'log2fc',
                     title: 'Log2FC',
                     sortable:true,
+                },{
+                    field: 'type',
+                    title: 'Type',
+                    sortable:true,
                 }
             ]
         });
@@ -424,8 +428,13 @@
                     checkbox: true,
                     align: 'center',
                 }, {
-                    field: 'gene_type',
-                    title: 'Gene Type',
+                    field: 'type',
+                    title: 'Type',
+                    sortable:true,
+					align: 'center',
+                }, {
+                    field: 'description',
+                    title: 'Description',
                     sortable:true,
 					align: 'center',
                 }
@@ -513,20 +522,20 @@
                     checkbox: true,
                     align: 'center',
                 }, {
-                    field: 'gene_id',
-                    title: 'Gene Id',
+                    field: 'protein_id',
+                    title: 'Protein Id',
                     sortable:true,
                 }, {
-                    field: 'gene_type',
+                    field: 'gene_id',
                     title: 'Gene Type',
                     sortable:true,
                 },{
-                    field: 'symbol',
-                    title: 'Symbol',
+                    field: 'gene_symbol',
+                    title: 'Gene Symbol',
                     sortable:true,
                 }, {
-                    field: 'name',
-                    title: 'Name',
+                    field: 'gene_title',
+                    title: 'Gene Title',
                     sortable:true,
                 }
             ]

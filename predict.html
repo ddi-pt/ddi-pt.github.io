@@ -470,7 +470,12 @@
             e.preventDefault();
 			var d_a = String($('#drug-a').val()).toLowerCase();
 			var d_b = String($('#drug-b').val()).toLowerCase();
-			if (d_a == d_b) {
+			if (d_a == '' && d_b == '') {
+				$("#drug-a").removeClass('is-valid');
+				$("#drug-a").addClass('is-invalid');
+				$("#drug-b").removeClass('is-valid');
+				$("#drug-b").addClass('is-invalid');
+			} else if (d_a == d_b) {
 				alert("Drug A and Drug B cannot be the same!");
 				$('#drug-a').val('');
 				$('#drug-b').val('');

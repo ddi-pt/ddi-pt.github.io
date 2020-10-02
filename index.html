@@ -71,10 +71,10 @@
         <hr>
 		<p>This website contains four parts:</p>
 		<ul>
-          <li><a href="#predict">Predict DDI</a>, where you can predict potential DDI of drug pair using LINCS signature</li>
-          <li><a href="#browse-drug">Browse Drug</a>, where you can browse target/emzyme/transporter/carrier of drug</li>
-          <li><a href="#browse-lincs">Browse LINCS</a>, where you can browse LINCS signature of drug</li>
-		  <li><a href="#download">Download</a>, where you can download relevant data</li>
+          <li><a href="#predict">Predict DDI</a>, where you can predict potential DDIs of drug pair using LINCS signatures.</li>
+          <li><a href="#browse-drug">Browse Drug</a>, where you can browse target, emzyme, transporter, carrier of drug.</li>
+          <li><a href="#browse-lincs">Browse LINCS</a>, where you can browse LINCS signature of drug.</li>
+		  <li><a href="#download">Download</a>, where you can download relevant data.</li>
         </ul>
         </div>
     </div>
@@ -96,9 +96,9 @@
 			<img src="https://ddi-pt.github.io/img/lincs.jpg" height="70%" width="70%">
 		</div>
 		<p>The Library of Integrated Cellular Signatures (LINCS) is an NIH program which funds the generation of perturbational profiles across multiple cell and perturbation types, as well as read-outs, at a massive scale. In brief, the study design involves the generation of a compendium of transcriptional expression data from cultured human cells treated with small-molecule and genetic loss/gain of function perturbagens. </p>
-		<p>The data are processed through a computational system, that converts raw fluorescence intensities into differential gene expression signatures. Five levels of data were generated at the stages of the pre-processing.</p>
-		<p>Level 5 signatures, which were collected from MCF7 cell line treated with 10 μM of the small molecules, and gene expression changes measured after 24 h, were extracted from <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE92742">LINCS PHASE I</a> and <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">LINCS PHASE II</a>. The Level 5 signatures in the space of 978 landmark genes, which were directly measured, were used as feature vectors for drugs to predict DDIs.</p>
-		<p>As a result, 1049 approved drugs were involved. So this model can only predict DDIs in these 1049 drugs.</p>
+		<p>The data were processed through a computational system, that converted raw fluorescence intensities into differential gene expression signatures. Five levels of data were generated at the stages of pre-processing.</p>
+		<p>Level 5 signatures, which were collected from MCF7 cell line treated with 10 μM of the small molecules after 24 h, were extracted from <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE92742">LINCS PHASE I</a> and <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70138">LINCS PHASE II</a>. The Level 5 signatures in the space of 978 landmark genes, which were directly measured, were used as feature vectors for drugs to predict DDIs.</p>
+		<p>1049 approved drugs were involved. This model can only predict DDIs in these 1049 drugs.</p>
 		<hr>
 		<h5>Output/Result</h5>
 		<p>The results return as "Known DDI" and "Predicted DDI". "Known DDI" contains the known DDIs in DrugBank of the drug pair. "Predicted DDI" contains the predicted DDIs of the drug pair with their probabilities in descending order.</p>
@@ -113,7 +113,7 @@
         <div class="card-body row">
 		<div class="col-12 col-sm-8">
 		<br>
-		<p>Here you can browse drugs of interest and their interactions with relevant target, emzyme, transporter and carrier.</p>
+		<p>Here you can browse drugs of interest and their interactions with relevant targets, emzymes, transporters and carriers.</p>
 		<ul>
           <li>Use drug filter to select drugs of interest.</li>
           <li>Use protein type filter to select target, emzyme, transporter or carrier.</li>
@@ -169,7 +169,7 @@
         <div class="card-body row">
 		<div class="col-12 col-sm-8">
 		<br>
-		<p>Here you can browse drugs of interest and Log2FCs of the genes encoding target, emzyme, transporter and carrier in MCF7 cell line treated with 10 μM of the drugs, and gene expression changes measured after 24 h.</p>
+		<p>Here you can browse drugs of interest and Log2FC values of the genes encoding targets, emzymes, transporters and carriers in MCF7 cell line treated with 10 μM of the drugs after 24 h.</p>
 		<ul>
           <li>Use drug filter to select drugs of interest.</li>
           <li>Use type filter to select types of interest.</li>

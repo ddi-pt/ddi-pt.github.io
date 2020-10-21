@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://ddi-pt.github.io/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://ddi-pt.github.io/css/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="https://ddi-pt.github.io/css/bootstrap-table/bootstrap-table.min.css">
-  </head>
+</head>
 
 <body class="d-flex flex-column h-100">
 <header class="bg-dark">
@@ -55,563 +55,563 @@
 </header>
 
 <main role="main" class="container flex-shrink-0">
-<br>
-<br>
-  <div class="row">
-    <div class="col-md-3">
-	
-<div class="card">
-  <div class="card-header">
-    Drug Filter
-  </div>
-  <div class="card-body">
-    <select id="op-d" class="custom-select">
-        <option selected="selected" value="all">All drugs</option>
-        <option value="selected">Selected drugs</option>
-    </select>
-	
-<div id="s-d" style="display: none;">
-<div class="row mt-3">
-  <div class="col-8 offset-2">
-    <button type="button" class="btn btn-secondary btn-block" type="button" data-toggle="modal" data-target="#Modal-d">Add</button>
-  </div>
-  <div class="col-12">
-      <ul class="list-group mt-3" id="d-l">
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-3">
 
-      </ul>
-  </div>
-</div>
-</div>
+            <div class="card">
+                <div class="card-header">
+                    Drug Filter
+                </div>
+                <div class="card-body">
+                    <select id="op-d" class="custom-select">
+                        <option selected="selected" value="all">All drugs</option>
+                        <option value="selected">Selected drugs</option>
+                    </select>
 
-  </div>
-</div>
-<br>
-
-<div class="card">
-  <div class="card-header">
-    Type Filter
-  </div>
-  <div class="card-body">
-    <select id="op-pt" class="custom-select">
-        <option selected="selected" value="all">All types</option>
-        <option value="selected">Selected types</option>
-    </select>
-	
-<div id="s-pt" style="display: none;">
-<div class="row mt-3">
-  <div class="col-8 offset-2">
-    <button type="button" class="btn btn-secondary btn-block" type="button" data-toggle="modal" data-target="#Modal-pt">Add</button>
-  </div>
-  <div class="col-12">
-      <ul class="list-group mt-3" id="pt-l">
-
-      </ul>
-  </div>
-</div>
-</div>
-	
-  </div>
-</div>
-<br>
-<div class="card">
-  <div class="card-header">
-    Gene Filter
-  </div>
-  <div class="card-body">
-    <select id="op-p" class="custom-select">
-        <option selected="selected" value="all">All genes</option>
-        <option value="selected">Selected genes</option>
-    </select>
-	
-<div id="s-p" style="display: none;">
-<div class="row mt-3">
-  <div class="col-8 offset-2">
-    <button type="button" class="btn btn-secondary btn-block" type="button" data-toggle="modal" data-target="#Modal-p">Add</button>
-  </div>
-  <div class="col-12">
-      <ul class="list-group mt-3" id="p-l">
-
-      </ul>
-  </div>
-</div>
-</div>
-	
-  </div>
-</div>
-	<br>
-	<br>
-    </div>
-
-    <div class="col-md-9">
-
-                    <div class="card">
-                        <div class="card-body">
-                            <div id="exportToolbar">
-                                <select id="sel_exportoption" class="custom-select">
-                                    <option selected="selected" value="selected">Export selected data</option>
-                                    <option value="basic">Export data in this page</option>
-                                    <option value="all">Export all data</option>
-                                </select>
+                    <div id="s-d" style="display: none;">
+                        <div class="row mt-3">
+                            <div class="col-8 offset-2">
+                                <button type="button" class="btn btn-secondary btn-block" type="button" data-toggle="modal" data-target="#Modal-d">Add</button>
                             </div>
-                            <div class="table-responsive">
-                                <table id="table-drug"></table>
+                            <div class="col-12">
+                                <ul class="list-group mt-3" id="d-l">
+
+                                </ul>
                             </div>
-                            <br>
                         </div>
                     </div>
- 
-    </div>
-  </div>
-<br>
-<br>
 
-            <div class="modal fade" id="Modal-d" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalLabel">Selelct a drug</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="toolbar-d">
-                                <button id="re-bt-d" class="btn btn-secondary">Reset</button>
-                            </div>
-                            <div class="table-responsive">
-                                <table id="table-d"></table>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="ok-d">OK</button>
-                        </div>
-                    </div>
                 </div>
             </div>
-			
-            <div class="modal fade" id="Modal-pt" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalLabel">Selelct a type</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="toolbar-pt">
-                                <button id="re-bt-pt" class="btn btn-secondary">Reset</button>
+            <br>
+
+            <div class="card">
+                <div class="card-header">
+                    Type Filter
+                </div>
+                <div class="card-body">
+                    <select id="op-pt" class="custom-select">
+                        <option selected="selected" value="all">All types</option>
+                        <option value="selected">Selected types</option>
+                    </select>
+
+                    <div id="s-pt" style="display: none;">
+                        <div class="row mt-3">
+                            <div class="col-8 offset-2">
+                                <button type="button" class="btn btn-secondary btn-block" type="button" data-toggle="modal" data-target="#Modal-pt">Add</button>
                             </div>
-                            <div class="table-responsive">
-                                <table id="table-pt"></table>
+                            <div class="col-12">
+                                <ul class="list-group mt-3" id="pt-l">
+
+                                </ul>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="ok-pt">OK</button>
                         </div>
                     </div>
+
                 </div>
             </div>
-			
-            <div class="modal fade" id="Modal-p" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalLabel">Selelct a gene</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="toolbar-p">
-                                <button id="re-bt-p" class="btn btn-secondary">Reset</button>
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    Gene Filter
+                </div>
+                <div class="card-body">
+                    <select id="op-p" class="custom-select">
+                        <option selected="selected" value="all">All genes</option>
+                        <option value="selected">Selected genes</option>
+                    </select>
+
+                    <div id="s-p" style="display: none;">
+                        <div class="row mt-3">
+                            <div class="col-8 offset-2">
+                                <button type="button" class="btn btn-secondary btn-block" type="button" data-toggle="modal" data-target="#Modal-p">Add</button>
                             </div>
-                            <div class="table-responsive">
-                                <table id="table-p"></table>
+                            <div class="col-12">
+                                <ul class="list-group mt-3" id="p-l">
+
+                                </ul>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="ok-p">OK</button>
                         </div>
                     </div>
+
                 </div>
-            </div>		
+            </div>
+            <br>
+            <br>
+        </div>
+
+        <div class="col-md-9">
+
+            <div class="card">
+                <div class="card-body">
+                    <div id="exportToolbar">
+                        <select id="sel_exportoption" class="custom-select">
+                            <option selected="selected" value="selected">Export selected data</option>
+                            <option value="basic">Export data in this page</option>
+                            <option value="all">Export all data</option>
+                        </select>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="table-drug"></table>
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="modal fade" id="Modal-d" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Selelct a drug</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="toolbar-d">
+                        <button id="re-bt-d" class="btn btn-secondary">Reset</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="table-d"></table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="ok-d">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Modal-pt" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Selelct a type</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="toolbar-pt">
+                        <button id="re-bt-pt" class="btn btn-secondary">Reset</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="table-pt"></table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="ok-pt">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Modal-p" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Selelct a gene</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="toolbar-p">
+                        <button id="re-bt-p" class="btn btn-secondary">Reset</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="table-p"></table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="ok-p">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </main>
 
 <footer class="footer mt-auto py-2 bg-dark">
     <div class="container">
         <h4 class="text-white float-left m-1"><font color="#2828FF">DDI</font>PT</h4>
-		<div class="float-right">
-        <small class="d-block text-muted mt-2">&copy; 2020&nbsp;&nbsp;&nbsp;<i class="fa fa-bug" aria-hidden="true"></i>&nbsp;Version 1.1</small>
-		</div>
-	</div>
+        <div class="float-right">
+            <small class="d-block text-muted mt-2">&copy; 2020&nbsp;&nbsp;&nbsp;<i class="fa fa-bug" aria-hidden="true"></i>&nbsp;Version 1.1</small>
+        </div>
+    </div>
 </footer>
 
-    <script src="https://ddi-pt.github.io/js/jquery/jquery.min.js"></script>
-    <script src="https://ddi-pt.github.io/js/popper/popper.min.js"></script>
-    <script src="https://ddi-pt.github.io/js/bootstrap/bootstrap.min.js"></script>
-    <script src="https://ddi-pt.github.io/js/bootstrap-table/bootstrap-table.min.js"></script>
-    <script src="https://ddi-pt.github.io/js/tableExport/tableExport.min.js"></script>
-    <script src="https://ddi-pt.github.io/js/bootstrap-table/extensions/export/bootstrap-table-export.min.js"></script>
+<script src="https://ddi-pt.github.io/js/jquery/jquery.min.js"></script>
+<script src="https://ddi-pt.github.io/js/popper/popper.min.js"></script>
+<script src="https://ddi-pt.github.io/js/bootstrap/bootstrap.min.js"></script>
+<script src="https://ddi-pt.github.io/js/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="https://ddi-pt.github.io/js/tableExport/tableExport.min.js"></script>
+<script src="https://ddi-pt.github.io/js/bootstrap-table/extensions/export/bootstrap-table-export.min.js"></script>
 
-    <script>
-        $('#table-drug').bootstrapTable({
-            url: 'https://pharmpkdb.com:14488/model/browse_lincs',
-            contentType: 'application/x-www-form-urlencoded',
-            clickToSelect: true,
-			maintainMetaData: true,
-            toolbar: '#exportToolbar',
-            clickToSelect: true,
-            showExport: true,
-            exportDataType: 'selected',
-            cache: true,
-            striped: true,
-            pagination: true,
-            pageList: [10, 20, 50, 100],
-            sidePagination: 'client',
-            columns: [
-                {
-                    field: 'state',
-                    checkbox: true,
-                    align: 'center',
-                }, {
-                    field: 'drug_id',
-                    title: 'Drug Id',
-                    sortable:true,
-                }, {
-                    field: 'gene_id',
-                    title: 'Gene Id',
-                    sortable:true,
-                },{
-                    field: 'log2fc',
-                    title: 'Log2FC',
-                    sortable:true,
-                },{
-                    field: 'type',
-                    title: 'Type',
-                    sortable:true,
-                }
-            ]
+<script>
+    $('#table-drug').bootstrapTable({
+        url: 'https://pharmpkdb.com:14488/model/browse_lincs',
+        contentType: 'application/x-www-form-urlencoded',
+        clickToSelect: true,
+        maintainMetaData: true,
+        toolbar: '#exportToolbar',
+        clickToSelect: true,
+        showExport: true,
+        exportDataType: 'selected',
+        cache: true,
+        striped: true,
+        pagination: true,
+        pageList: [10, 20, 50, 100],
+        sidePagination: 'client',
+        columns: [
+            {
+                field: 'state',
+                checkbox: true,
+                align: 'center',
+            }, {
+                field: 'drug_id',
+                title: 'Drug Id',
+                sortable:true,
+            }, {
+                field: 'gene_id',
+                title: 'Gene Id',
+                sortable:true,
+            },{
+                field: 'log2fc',
+                title: 'Log2FC',
+                sortable:true,
+            },{
+                field: 'type',
+                title: 'Type',
+                sortable:true,
+            }
+        ]
+    });
+    $("#sel_exportoption").change(function () {
+        $('#table-drug').bootstrapTable('refreshOptions', {
+            exportDataType: $(this).val()
         });
-        $("#sel_exportoption").change(function () {
-            $('#table-drug').bootstrapTable('refreshOptions', {
-                exportDataType: $(this).val()
-            });
-        });
-		$("#op-d").change(function () {
-            if ($(this).val() == 'selected') {
-				$("#s-d").show();
-			} else if ($(this).val() == 'all'){
-				$("#s-d").hide();
-				$("#d-l").empty();
-				sel_d = [];
-				$('#table-drug').bootstrapTable('filterBy',);
-			};
-        });
-		
-		function delRow_d(obj) {
-			rd = $(obj).parent()[0].innerText;
-			rd = rd.slice(0,rd.length-2);
-			sel_d.forEach(function(item, index, arr) {
-				if(item === rd) {
-					arr.splice(index, 1);
-				}
-			});
-			filter_refresh();
-            $(obj).parent().remove();
+    });
+    $("#op-d").change(function () {
+        if ($(this).val() == 'selected') {
+            $("#s-d").show();
+        } else if ($(this).val() == 'all'){
+            $("#s-d").hide();
+            $("#d-l").empty();
+            sel_d = [];
+            $('#table-drug').bootstrapTable('filterBy',);
         };
-		
-        $('#table-d').bootstrapTable({
-            url: 'https://pharmpkdb.com:14488/model/get_drugs',
-            contentType: 'application/x-www-form-urlencoded',
-            toolbar: '#toolbar-d',
-			toolbarAlign: 'right',
-            clickToSelect: true,
-            singleSelect: true,
-            search: true,
-			showSearchButton: true,
-            searchAlign: 'left',
-			maintainMetaData: true,
-            cache: true,
-            striped: true,
-            pagination: true,
-            pageList: [5, 10, 20],
-            sidePagination: 'client',
-            columns: [
-                {
-                    field: 'state',
-                    checkbox: true,
-                    align: 'center',
-                }, {
-                    field: 'DrugBank_Id',
-                    title: 'Drug Id',
-                    sortable:true,
-                }, {
-                    field: 'Name',
-                    title: 'Name',
-                    sortable:true,
-                },{
-                    field: 'Cas_Number',
-                    title: 'Cas Number',
-                    sortable:true,
-                }, {
-                    field: 'PubChem_Id',
-                    title: 'PubChem Id',
-                    sortable:true,
-                }
-            ]
+    });
+
+    function delRow_d(obj) {
+        rd = $(obj).parent()[0].innerText;
+        rd = rd.slice(0,rd.length-2);
+        sel_d.forEach(function(item, index, arr) {
+            if(item === rd) {
+                arr.splice(index, 1);
+            }
         });
-		
-		$(function(){
-            $("#re-bt-d").click(function(){
+        filter_refresh();
+        $(obj).parent().remove();
+    };
+
+    $('#table-d').bootstrapTable({
+        url: 'https://pharmpkdb.com:14488/model/get_drugs',
+        contentType: 'application/x-www-form-urlencoded',
+        toolbar: '#toolbar-d',
+        toolbarAlign: 'right',
+        clickToSelect: true,
+        singleSelect: true,
+        search: true,
+        showSearchButton: true,
+        searchAlign: 'left',
+        maintainMetaData: true,
+        cache: true,
+        striped: true,
+        pagination: true,
+        pageList: [5, 10, 20],
+        sidePagination: 'client',
+        columns: [
+            {
+                field: 'state',
+                checkbox: true,
+                align: 'center',
+            }, {
+                field: 'DrugBank_Id',
+                title: 'Drug Id',
+                sortable:true,
+            }, {
+                field: 'Name',
+                title: 'Name',
+                sortable:true,
+            },{
+                field: 'Cas_Number',
+                title: 'Cas Number',
+                sortable:true,
+            }, {
+                field: 'PubChem_Id',
+                title: 'PubChem Id',
+                sortable:true,
+            }
+        ]
+    });
+
+    $(function(){
+        $("#re-bt-d").click(function(){
+            filter_refresh();
+        });
+    });
+
+    var d_name;
+    $(function(){
+        $('#table-d').on('check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table',
+            function (e, rowsAfter, rowsBefore) {
+                var rows = rowsAfter;
+
+                if (e.type === 'uncheck-all') {
+                    rows = rowsBefore;
+                };
+
+                d_name = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
+                    return row.DrugBank_Id;
+                });
+            });
+    });
+
+    var sel_d = [];
+
+    $(function(){
+        $("#ok-d").click(function(){
+            if ($.inArray(d_name[0], sel_d) == -1) {
+                sel_d.push(d_name[0]);
+                $("#d-l").append("<li class='list-group-item'>" + d_name[0] + "<button type='button' class='close' onclick='delRow_d(this)'><span aria-hidden='true'>&times;</span></button></li>");
                 filter_refresh();
-            });
+            } else {
+
+            };
         });
-		
-        var d_name;
-        $(function(){
-            $('#table-d').on('check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table',
-                function (e, rowsAfter, rowsBefore) {
-                    var rows = rowsAfter;
+    });
 
-                    if (e.type === 'uncheck-all') {
-                        rows = rowsBefore;
-                    };
+    $('#table-pt').bootstrapTable({
+        url: 'https://pharmpkdb.com:14488/model/browse_lincs_gt',
+        contentType: 'application/x-www-form-urlencoded',
+        toolbar: '#toolbar-pt',
+        toolbarAlign: 'right',
+        clickToSelect: true,
+        singleSelect: true,
+        search: true,
+        showSearchButton: true,
+        searchAlign: 'left',
+        maintainMetaData: true,
+        cache: true,
+        striped: true,
+        pagination: true,
+        pageList: [5, 10, 20],
+        sidePagination: 'client',
+        columns: [
+            {
+                field: 'state',
+                checkbox: true,
+                align: 'center',
+            }, {
+                field: 'type',
+                title: 'Type',
+                sortable:true,
+                align: 'center',
+            }, {
+                field: 'description',
+                title: 'Description',
+                sortable:true,
+                align: 'center',
+            }
+        ]
+    });
 
-                    d_name = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
-                        return row.DrugBank_Id;
-                    });
+    $(function(){
+        $("#re-bt-pt").click(function(){
+            $("#table-pt").bootstrapTable('resetSearch');
+        });
+    });
+
+    var pt_name;
+    $(function(){
+        $('#table-pt').on('check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table',
+            function (e, rowsAfter, rowsBefore) {
+                var rows = rowsAfter;
+
+                if (e.type === 'uncheck-all') {
+                    rows = rowsBefore;
+                };
+
+                pt_name = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
+                    return row.type;
                 });
-        });
-		
-		var sel_d = [];
-		
-        $(function(){
-            $("#ok-d").click(function(){
-				if ($.inArray(d_name[0], sel_d) == -1) {
-					sel_d.push(d_name[0]);
-					$("#d-l").append("<li class='list-group-item'>" + d_name[0] + "<button type='button' class='close' onclick='delRow_d(this)'><span aria-hidden='true'>&times;</span></button></li>");
-					filter_refresh();
-				} else {
-					
-				};
             });
-        });
-		
-		$('#table-pt').bootstrapTable({
-            url: 'https://pharmpkdb.com:14488/model/browse_lincs_gt',
-            contentType: 'application/x-www-form-urlencoded',
-            toolbar: '#toolbar-pt',
-			toolbarAlign: 'right',
-            clickToSelect: true,
-            singleSelect: true,
-            search: true,
-			showSearchButton: true,
-            searchAlign: 'left',
-			maintainMetaData: true,
-            cache: true,
-            striped: true,
-            pagination: true,
-            pageList: [5, 10, 20],
-            sidePagination: 'client',
-            columns: [
-                {
-                    field: 'state',
-                    checkbox: true,
-                    align: 'center',
-                }, {
-                    field: 'type',
-                    title: 'Type',
-                    sortable:true,
-					align: 'center',
-                }, {
-                    field: 'description',
-                    title: 'Description',
-                    sortable:true,
-					align: 'center',
-                }
-            ]
-        });
-		
-		$(function(){
-            $("#re-bt-pt").click(function(){
-                $("#table-pt").bootstrapTable('resetSearch');
-            });
-        });
-		
-        var pt_name;
-        $(function(){
-            $('#table-pt').on('check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table',
-                function (e, rowsAfter, rowsBefore) {
-                    var rows = rowsAfter;
+    });
 
-                    if (e.type === 'uncheck-all') {
-                        rows = rowsBefore;
-                    };
+    var sel_pt = [];
 
-                    pt_name = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
-                        return row.type;
-                    });
+    $(function(){
+        $("#ok-pt").click(function(){
+            if ($.inArray(pt_name[0], sel_pt) == -1) {
+                sel_pt.push(pt_name[0]);
+                $("#pt-l").append("<li class='list-group-item'>" + pt_name[0] + "<button type='button' class='close' onclick='delRow_pt(this)'><span aria-hidden='true'>&times;</span></button></li>");
+                filter_refresh();
+            } else {
+
+            };
+        });
+    });
+
+    $("#op-pt").change(function () {
+        if ($(this).val() == 'selected') {
+            $("#s-pt").show();
+        } else if ($(this).val() == 'all'){
+            $("#s-pt").hide();
+            $("#pt-l").empty();
+            sel_pt = [];
+            filter_refresh();
+        };
+    });
+
+    function delRow_pt(obj) {
+        rd = $(obj).parent()[0].innerText;
+        rd = rd.slice(0,rd.length-2);
+        sel_pt.forEach(function(item, index, arr) {
+            if(String(item) === rd) {
+                arr.splice(index, 1);
+            }
+        });
+        filter_refresh();
+        $(obj).parent().remove();
+    };
+
+    $('#table-p').bootstrapTable({
+        url: 'https://pharmpkdb.com:14488/model/browse_lincs_g',
+        contentType: 'application/x-www-form-urlencoded',
+        toolbar: '#toolbar-p',
+        toolbarAlign: 'right',
+        clickToSelect: true,
+        singleSelect: true,
+        search: true,
+        showSearchButton: true,
+        searchAlign: 'left',
+        maintainMetaData: true,
+        cache: true,
+        striped: true,
+        pagination: true,
+        pageList: [5, 10, 20],
+        sidePagination: 'client',
+        columns: [
+            {
+                field: 'state',
+                checkbox: true,
+                align: 'center',
+            }, {
+                field: 'protein_id',
+                title: 'Protein Id',
+                sortable:true,
+            }, {
+                field: 'gene_id',
+                title: 'Gene Id',
+                sortable:true,
+            },{
+                field: 'gene_symbol',
+                title: 'Gene Symbol',
+                sortable:true,
+            }, {
+                field: 'gene_title',
+                title: 'Gene Title',
+                sortable:true,
+            }
+        ]
+    });
+
+    $(function(){
+        $("#re-bt-p").click(function(){
+            $("#table-p").bootstrapTable('resetSearch');
+        });
+    });
+
+    var p_name;
+    $(function(){
+        $('#table-p').on('check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table',
+            function (e, rowsAfter, rowsBefore) {
+                var rows = rowsAfter;
+
+                if (e.type === 'uncheck-all') {
+                    rows = rowsBefore;
+                };
+
+                p_name = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
+                    return row.gene_id;
                 });
-        });
-		
-		var sel_pt = [];
-		
-        $(function(){
-            $("#ok-pt").click(function(){
-				if ($.inArray(pt_name[0], sel_pt) == -1) {
-					sel_pt.push(pt_name[0]);
-					$("#pt-l").append("<li class='list-group-item'>" + pt_name[0] + "<button type='button' class='close' onclick='delRow_pt(this)'><span aria-hidden='true'>&times;</span></button></li>");
-					filter_refresh();
-				} else {
-					
-				};
             });
-        });
-		
-		$("#op-pt").change(function () {
-            if ($(this).val() == 'selected') {
-				$("#s-pt").show();
-			} else if ($(this).val() == 'all'){
-				$("#s-pt").hide();
-				$("#pt-l").empty();
-				sel_pt = [];
-				filter_refresh();
-			};
-        });
-		
-		function delRow_pt(obj) {
-			rd = $(obj).parent()[0].innerText;
-			rd = rd.slice(0,rd.length-2);
-			sel_pt.forEach(function(item, index, arr) {
-				if(String(item) === rd) {
-					arr.splice(index, 1);
-				}
-			});
-			filter_refresh();
-            $(obj).parent().remove();
-        };
-		
-		$('#table-p').bootstrapTable({
-            url: 'https://pharmpkdb.com:14488/model/browse_lincs_g',
-            contentType: 'application/x-www-form-urlencoded',
-            toolbar: '#toolbar-p',
-			toolbarAlign: 'right',
-            clickToSelect: true,
-            singleSelect: true,
-            search: true,
-			showSearchButton: true,
-            searchAlign: 'left',
-			maintainMetaData: true,
-            cache: true,
-            striped: true,
-            pagination: true,
-            pageList: [5, 10, 20],
-            sidePagination: 'client',
-            columns: [
-                {
-                    field: 'state',
-                    checkbox: true,
-                    align: 'center',
-                }, {
-                    field: 'protein_id',
-                    title: 'Protein Id',
-                    sortable:true,
-                }, {
-                    field: 'gene_id',
-                    title: 'Gene Id',
-                    sortable:true,
-                },{
-                    field: 'gene_symbol',
-                    title: 'Gene Symbol',
-                    sortable:true,
-                }, {
-                    field: 'gene_title',
-                    title: 'Gene Title',
-                    sortable:true,
-                }
-            ]
-        });
-		
-		$(function(){
-            $("#re-bt-p").click(function(){
-                $("#table-p").bootstrapTable('resetSearch');
-            });
-        });
-		
-        var p_name;
-        $(function(){
-            $('#table-p').on('check.bs.table check-all.bs.table uncheck.bs.table uncheck-all.bs.table',
-                function (e, rowsAfter, rowsBefore) {
-                    var rows = rowsAfter;
+    });
 
-                    if (e.type === 'uncheck-all') {
-                        rows = rowsBefore;
-                    };
+    var sel_p = [];
 
-                    p_name = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
-                        return row.gene_id;
-                    });
-                });
+    $(function(){
+        $("#ok-p").click(function(){
+            if ($.inArray(p_name[0], sel_p) == -1) {
+                sel_p.push(p_name[0]);
+                $("#p-l").append("<li class='list-group-item'>" + p_name[0] + "<button type='button' class='close' onclick='delRow_p(this)'><span aria-hidden='true'>&times;</span></button></li>");
+                filter_refresh();
+            } else {
+
+            };
         });
-		
-		var sel_p = [];
-		
-        $(function(){
-            $("#ok-p").click(function(){
-				if ($.inArray(p_name[0], sel_p) == -1) {
-					sel_p.push(p_name[0]);
-					$("#p-l").append("<li class='list-group-item'>" + p_name[0] + "<button type='button' class='close' onclick='delRow_p(this)'><span aria-hidden='true'>&times;</span></button></li>");
-					filter_refresh();
-				} else {
-					
-				};
-            });
-        });
-		
-		$("#op-p").change(function () {
-            if ($(this).val() == 'selected') {
-				$("#s-p").show();
-			} else if ($(this).val() == 'all'){
-				$("#s-p").hide();
-				$("#p-l").empty();
-				sel_p = [];
-				filter_refresh();
-			};
-        });
-		
-		function delRow_p(obj) {
-			rd = $(obj).parent()[0].innerText;
-			rd = rd.slice(0,rd.length-2);
-			console.log(sel_p);
-			sel_p.forEach(function(item, index, arr) {
-				if(String(item) === rd) {
-					arr.splice(index, 1);
-				}
-			});
-			console.log(sel_p);
-			filter_refresh();
-            $(obj).parent().remove();
+    });
+
+    $("#op-p").change(function () {
+        if ($(this).val() == 'selected') {
+            $("#s-p").show();
+        } else if ($(this).val() == 'all'){
+            $("#s-p").hide();
+            $("#p-l").empty();
+            sel_p = [];
+            filter_refresh();
         };
-		
-		function filter_refresh() {
-			var f_l = {};
-			if (sel_d.length != 0) {
-				f_l.drug_id = sel_d;
-			};
-			if (sel_pt.length != 0) {
-				f_l.type = sel_pt;
-			};
-			if (sel_p.length != 0) {
-				f_l.gene_id = sel_p;
-			};
-			$('#table-drug').bootstrapTable('filterBy', f_l, { 'filterAlgorithm': 'and'});
+    });
+
+    function delRow_p(obj) {
+        rd = $(obj).parent()[0].innerText;
+        rd = rd.slice(0,rd.length-2);
+        console.log(sel_p);
+        sel_p.forEach(function(item, index, arr) {
+            if(String(item) === rd) {
+                arr.splice(index, 1);
+            }
+        });
+        console.log(sel_p);
+        filter_refresh();
+        $(obj).parent().remove();
+    };
+
+    function filter_refresh() {
+        var f_l = {};
+        if (sel_d.length != 0) {
+            f_l.drug_id = sel_d;
         };
-		
-    </script>
+        if (sel_pt.length != 0) {
+            f_l.type = sel_pt;
+        };
+        if (sel_p.length != 0) {
+            f_l.gene_id = sel_p;
+        };
+        $('#table-drug').bootstrapTable('filterBy', f_l, { 'filterAlgorithm': 'and'});
+    };
+
+</script>
 </body>
 </html>

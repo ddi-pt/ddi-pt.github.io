@@ -475,14 +475,20 @@
                 $("#drug-a").addClass('is-invalid');
                 $("#drug-b").removeClass('is-valid');
                 $("#drug-b").addClass('is-invalid');
+				$('#table-results').bootstrapTable('removeAll');
+				$('#table-known').bootstrapTable('removeAll');
             } else if (d_a == d_b) {
                 alert("Drug A and Drug B cannot be the same!");
                 $('#drug-a').val('');
                 $('#drug-b').val('');
+				$('#table-results').bootstrapTable('removeAll');
+				$('#table-known').bootstrapTable('removeAll');
             } else {
                 if ($.inArray(d_a, check_l) == -1) {
                     $("#drug-a").removeClass('is-valid');
                     $("#drug-a").addClass('is-invalid');
+					$('#table-results').bootstrapTable('removeAll');
+					$('#table-known').bootstrapTable('removeAll');
                     flag_a = 0;
                 } else {
                     $("#drug-a").removeClass('is-invalid');
@@ -492,6 +498,8 @@
                 if ($.inArray(d_b, check_l) == -1) {
                     $("#drug-b").removeClass('is-valid');
                     $("#drug-b").addClass('is-invalid');
+					$('#table-results').bootstrapTable('removeAll');
+					$('#table-known').bootstrapTable('removeAll');
                     flag_b = 0;
                 } else {
                     $("#drug-b").removeClass('is-invalid');
